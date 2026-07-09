@@ -1,0 +1,2047 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {
+    "hyperedges": [
+      {
+        "id": "ingest_pipeline",
+        "label": "Ingest Pipeline: Caption \u2192 Embed \u2192 Store",
+        "nodes": [
+          "func_caption_image",
+          "func_to_vector",
+          "service_atlas"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "CLAUDE.md"
+      },
+      {
+        "id": "ask_pipeline",
+        "label": "Ask Pipeline: Retrieve \u2192 Reason \u2192 Answer",
+        "nodes": [
+          "service_atlas",
+          "service_gemini",
+          "endpoint_ask_post"
+        ],
+        "relation": "participate_in",
+        "confidence": "INFERRED",
+        "confidence_score": 0.75,
+        "source_file": "CLAUDE.md"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "app/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_init",
+      "community": 7,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "main.py",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "app_main",
+      "community": 1,
+      "norm_label": "main.py"
+    },
+    {
+      "label": "health()",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "app_main_health",
+      "community": 1,
+      "norm_label": "health()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "app/models/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models_init",
+      "community": 9,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "schemas.py",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models_schemas",
+      "community": 1,
+      "norm_label": "schemas.py"
+    },
+    {
+      "label": "IngestResponse",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "models_schemas_ingestresponse",
+      "community": 1,
+      "norm_label": "ingestresponse"
+    },
+    {
+      "label": "BaseModel",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "basemodel",
+      "community": 1,
+      "norm_label": "basemodel"
+    },
+    {
+      "label": "AskRequest",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "models_schemas_askrequest",
+      "community": 1,
+      "norm_label": "askrequest"
+    },
+    {
+      "label": "AskResponse",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "models_schemas_askresponse",
+      "community": 1,
+      "norm_label": "askresponse"
+    },
+    {
+      "label": "Pydantic request/response schemas.",
+      "file_type": "rationale",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "models_schemas_rationale_1",
+      "community": 1,
+      "norm_label": "pydantic request/response schemas."
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "app/routers/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "routers_init",
+      "community": 10,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "ask.py",
+      "file_type": "code",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "routers_ask",
+      "community": 1,
+      "norm_label": "ask.py"
+    },
+    {
+      "label": "ask()",
+      "file_type": "code",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "routers_ask_ask",
+      "community": 1,
+      "norm_label": "ask()"
+    },
+    {
+      "label": "AskRequest",
+      "file_type": "code",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "askrequest",
+      "community": 1,
+      "norm_label": "askrequest"
+    },
+    {
+      "label": "ingest.py",
+      "file_type": "code",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "routers_ingest",
+      "community": 1,
+      "norm_label": "ingest.py"
+    },
+    {
+      "label": "ingest()",
+      "file_type": "code",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "routers_ingest_ingest",
+      "community": 1,
+      "norm_label": "ingest()"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "app/services/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_init",
+      "community": 11,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "atlas.py",
+      "file_type": "code",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_atlas",
+      "community": 3,
+      "norm_label": "atlas.py"
+    },
+    {
+      "label": "vector_search_pipeline()",
+      "file_type": "code",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "services_atlas_vector_search_pipeline",
+      "community": 3,
+      "norm_label": "vector_search_pipeline()"
+    },
+    {
+      "label": "MongoDB Atlas Vector Search. TODO: implement.",
+      "file_type": "rationale",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_atlas_rationale_1",
+      "community": 3,
+      "norm_label": "mongodb atlas vector search. todo: implement."
+    },
+    {
+      "label": "Return an aggregation pipeline using $vectorSearch.",
+      "file_type": "rationale",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "services_atlas_rationale_3",
+      "community": 3,
+      "norm_label": "return an aggregation pipeline using $vectorsearch."
+    },
+    {
+      "label": "embedding.py",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_embedding",
+      "community": 4,
+      "norm_label": "embedding.py"
+    },
+    {
+      "label": "cosine_similarity()",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "services_embedding_cosine_similarity",
+      "community": 0,
+      "norm_label": "cosine_similarity()"
+    },
+    {
+      "label": "rank_by_similarity()",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "services_embedding_rank_by_similarity",
+      "community": 0,
+      "norm_label": "rank_by_similarity()"
+    },
+    {
+      "label": "to_vector()",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "services_embedding_to_vector",
+      "community": 4,
+      "norm_label": "to_vector()"
+    },
+    {
+      "label": "Embedding helpers.  ``to_vector`` calls Gemini (needs an API key) and is impleme",
+      "file_type": "rationale",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_embedding_rationale_1",
+      "community": 4,
+      "norm_label": "embedding helpers.  ``to_vector`` calls gemini (needs an api key) and is impleme"
+    },
+    {
+      "label": "Return the top-k candidates (each having an 'embedding') by cosine sim.      Eac",
+      "file_type": "rationale",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "services_embedding_rationale_23",
+      "community": 0,
+      "norm_label": "return the top-k candidates (each having an 'embedding') by cosine sim.      eac"
+    },
+    {
+      "label": "Delegate to the Gemini embedding service (requires GEMINI_API_KEY).",
+      "file_type": "rationale",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "services_embedding_rationale_37",
+      "community": 4,
+      "norm_label": "delegate to the gemini embedding service (requires gemini_api_key)."
+    },
+    {
+      "label": "gemini.py",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_gemini",
+      "community": 4,
+      "norm_label": "gemini.py"
+    },
+    {
+      "label": "caption_image()",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "services_gemini_caption_image",
+      "community": 4,
+      "norm_label": "caption_image()"
+    },
+    {
+      "label": "embed_text()",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L3",
+      "_origin": "ast",
+      "id": "services_gemini_embed_text",
+      "community": 4,
+      "norm_label": "embed_text()"
+    },
+    {
+      "label": "answer()",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L4",
+      "_origin": "ast",
+      "id": "services_gemini_answer",
+      "community": 4,
+      "norm_label": "answer()"
+    },
+    {
+      "label": "Gemini multimodal + embedding wrapper. TODO: implement.",
+      "file_type": "rationale",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "services_gemini_rationale_1",
+      "community": 4,
+      "norm_label": "gemini multimodal + embedding wrapper. todo: implement."
+    },
+    {
+      "label": "test_suite.py",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_suite",
+      "community": 0,
+      "norm_label": "test_suite.py"
+    },
+    {
+      "label": "_client()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_test_suite_client",
+      "community": 0,
+      "norm_label": "_client()"
+    },
+    {
+      "label": "test_ask_request_defaults_top_k()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_request_defaults_top_k",
+      "community": 1,
+      "norm_label": "test_ask_request_defaults_top_k()"
+    },
+    {
+      "label": "test_ask_request_accepts_image()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_request_accepts_image",
+      "community": 1,
+      "norm_label": "test_ask_request_accepts_image()"
+    },
+    {
+      "label": "test_ask_response_sources_default_empty()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_response_sources_default_empty",
+      "community": 1,
+      "norm_label": "test_ask_response_sources_default_empty()"
+    },
+    {
+      "label": "test_ingest_response_fields()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ingest_response_fields",
+      "community": 1,
+      "norm_label": "test_ingest_response_fields()"
+    },
+    {
+      "label": "test_ask_request_rejects_missing_question()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_request_rejects_missing_question",
+      "community": 1,
+      "norm_label": "test_ask_request_rejects_missing_question()"
+    },
+    {
+      "label": "test_pipeline_has_vector_search_stage()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_pipeline_has_vector_search_stage",
+      "community": 3,
+      "norm_label": "test_pipeline_has_vector_search_stage()"
+    },
+    {
+      "label": "test_pipeline_limit_matches_k()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_pipeline_limit_matches_k",
+      "community": 3,
+      "norm_label": "test_pipeline_limit_matches_k()"
+    },
+    {
+      "label": "test_pipeline_num_candidates_scales_with_k()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
+      "community": 3,
+      "norm_label": "test_pipeline_num_candidates_scales_with_k()"
+    },
+    {
+      "label": "test_pipeline_uses_custom_index_name()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_pipeline_uses_custom_index_name",
+      "community": 3,
+      "norm_label": "test_pipeline_uses_custom_index_name()"
+    },
+    {
+      "label": "test_pipeline_path_is_embedding()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L58",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_pipeline_path_is_embedding",
+      "community": 3,
+      "norm_label": "test_pipeline_path_is_embedding()"
+    },
+    {
+      "label": "test_health_ok()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L64",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_health_ok",
+      "community": 0,
+      "norm_label": "test_health_ok()"
+    },
+    {
+      "label": "test_health_status_code()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_health_status_code",
+      "community": 0,
+      "norm_label": "test_health_status_code()"
+    },
+    {
+      "label": "test_ingest_returns_doc_id()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ingest_returns_doc_id",
+      "community": 0,
+      "norm_label": "test_ingest_returns_doc_id()"
+    },
+    {
+      "label": "test_ask_returns_answer_field()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L75",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_returns_answer_field",
+      "community": 0,
+      "norm_label": "test_ask_returns_answer_field()"
+    },
+    {
+      "label": "test_ask_includes_sources_when_retrieved()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L79",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_ask_includes_sources_when_retrieved",
+      "community": 0,
+      "norm_label": "test_ask_includes_sources_when_retrieved()"
+    },
+    {
+      "label": "test_caption_image_returns_text()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_caption_image_returns_text",
+      "community": 0,
+      "norm_label": "test_caption_image_returns_text()"
+    },
+    {
+      "label": "test_embed_text_returns_vector_of_expected_dim()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L89",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_embed_text_returns_vector_of_expected_dim",
+      "community": 0,
+      "norm_label": "test_embed_text_returns_vector_of_expected_dim()"
+    },
+    {
+      "label": "test_answer_uses_image_when_provided()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L93",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_answer_uses_image_when_provided",
+      "community": 0,
+      "norm_label": "test_answer_uses_image_when_provided()"
+    },
+    {
+      "label": "test_cosine_identical_vectors_is_one()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L98",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_cosine_identical_vectors_is_one",
+      "community": 0,
+      "norm_label": "test_cosine_identical_vectors_is_one()"
+    },
+    {
+      "label": "test_cosine_orthogonal_is_zero()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_cosine_orthogonal_is_zero",
+      "community": 0,
+      "norm_label": "test_cosine_orthogonal_is_zero()"
+    },
+    {
+      "label": "test_cosine_length_mismatch_raises()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L104",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_cosine_length_mismatch_raises",
+      "community": 0,
+      "norm_label": "test_cosine_length_mismatch_raises()"
+    },
+    {
+      "label": "test_rank_returns_top_k()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L108",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_rank_returns_top_k",
+      "community": 0,
+      "norm_label": "test_rank_returns_top_k()"
+    },
+    {
+      "label": "test_rank_orders_most_similar_first()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L113",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_rank_orders_most_similar_first",
+      "community": 0,
+      "norm_label": "test_rank_orders_most_similar_first()"
+    },
+    {
+      "label": "test_end_to_end_ingest_then_ask()",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L121",
+      "_origin": "ast",
+      "id": "tests_test_suite_test_end_to_end_ingest_then_ask",
+      "community": 0,
+      "norm_label": "test_end_to_end_ingest_then_ask()"
+    },
+    {
+      "label": "20-test suite for the Multimodal Gemini Agent.  Tests that exercise pure scaffol",
+      "file_type": "rationale",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_suite_rationale_1",
+      "community": 0,
+      "norm_label": "20-test suite for the multimodal gemini agent.  tests that exercise pure scaffol"
+    },
+    {
+      "label": "Build a FastAPI TestClient, skipping if FastAPI isn't installed.",
+      "file_type": "rationale",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_test_suite_rationale_15",
+      "community": 0,
+      "norm_label": "build a fastapi testclient, skipping if fastapi isn't installed."
+    },
+    {
+      "label": "FastAPI Application",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "1-4",
+      "id": "fastapi_app",
+      "community": 2,
+      "norm_label": "fastapi application"
+    },
+    {
+      "label": "Ingest Router",
+      "file_type": "code",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "1-6",
+      "id": "router_ingest",
+      "community": 2,
+      "norm_label": "ingest router"
+    },
+    {
+      "label": "Ask Router",
+      "file_type": "code",
+      "source_file": "app/routers/ask.py",
+      "source_location": "1-7",
+      "id": "router_ask",
+      "community": 2,
+      "norm_label": "ask router"
+    },
+    {
+      "label": "AskRequest Pydantic Schema",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "9-12",
+      "id": "schema_ask_request",
+      "community": 2,
+      "norm_label": "askrequest pydantic schema"
+    },
+    {
+      "label": "AskResponse Pydantic Schema",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "14-16",
+      "id": "schema_ask_response",
+      "community": 2,
+      "norm_label": "askresponse pydantic schema"
+    },
+    {
+      "label": "IngestResponse Pydantic Schema",
+      "file_type": "code",
+      "source_file": "app/models/schemas.py",
+      "source_location": "5-7",
+      "id": "schema_ingest_response",
+      "community": 2,
+      "norm_label": "ingestresponse pydantic schema"
+    },
+    {
+      "label": "Atlas Vector Search Service",
+      "file_type": "code",
+      "source_file": "app/services/atlas.py",
+      "source_location": "1-5",
+      "id": "service_atlas",
+      "community": 2,
+      "norm_label": "atlas vector search service"
+    },
+    {
+      "label": "Embedding Service",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "1-40",
+      "id": "service_embedding",
+      "community": 2,
+      "norm_label": "embedding service"
+    },
+    {
+      "label": "Gemini Multimodal Service",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "1-4",
+      "id": "service_gemini",
+      "community": 2,
+      "norm_label": "gemini multimodal service"
+    },
+    {
+      "label": "cosine_similarity Function",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "11-19",
+      "id": "func_cosine_similarity",
+      "community": 2,
+      "norm_label": "cosine_similarity function"
+    },
+    {
+      "label": "rank_by_similarity Function",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "22-33",
+      "id": "func_rank_by_similarity",
+      "community": 2,
+      "norm_label": "rank_by_similarity function"
+    },
+    {
+      "label": "to_vector Embedding Function",
+      "file_type": "code",
+      "source_file": "app/services/embedding.py",
+      "source_location": "36-39",
+      "id": "func_to_vector",
+      "community": 6,
+      "norm_label": "to_vector embedding function"
+    },
+    {
+      "label": "caption_image Function",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "2",
+      "id": "func_caption_image",
+      "community": 5,
+      "norm_label": "caption_image function"
+    },
+    {
+      "label": "embed_text Function",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "3",
+      "id": "func_embed_text",
+      "community": 6,
+      "norm_label": "embed_text function"
+    },
+    {
+      "label": "answer Function",
+      "file_type": "code",
+      "source_file": "app/services/gemini.py",
+      "source_location": "4",
+      "id": "func_answer",
+      "community": 5,
+      "norm_label": "answer function"
+    },
+    {
+      "label": "Test Suite",
+      "file_type": "code",
+      "source_file": "tests/test_suite.py",
+      "source_location": "1-123",
+      "id": "test_suite",
+      "community": 2,
+      "norm_label": "test suite"
+    },
+    {
+      "label": "CLAUDE.md Architecture Documentation",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": null,
+      "id": "doc_claude_md",
+      "community": 2,
+      "norm_label": "claude.md architecture documentation"
+    },
+    {
+      "label": "README Project Overview",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "id": "doc_readme",
+      "community": 5,
+      "norm_label": "readme project overview"
+    },
+    {
+      "label": "Service Layer Architecture Pattern",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "8-9",
+      "id": "pattern_service_layer",
+      "community": 2,
+      "norm_label": "service layer architecture pattern"
+    },
+    {
+      "label": "Service Isolation Rationale",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "8-9",
+      "id": "rationale_service_isolation",
+      "community": 2,
+      "norm_label": "service isolation rationale"
+    },
+    {
+      "label": "MongoDB Atlas Vector Search",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "8,15-16,21",
+      "id": "mongodb_atlas_vector_search",
+      "community": 5,
+      "norm_label": "mongodb atlas vector search"
+    },
+    {
+      "label": "Gemini Multimodal Reasoning Pattern",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "7,16-19",
+      "id": "gemini_multimodal_reasoning",
+      "community": 5,
+      "norm_label": "gemini multimodal reasoning pattern"
+    },
+    {
+      "label": "POST /ingest Endpoint",
+      "file_type": "code",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "4-6",
+      "id": "endpoint_ingest_post",
+      "community": 2,
+      "norm_label": "post /ingest endpoint"
+    },
+    {
+      "label": "POST /ask Endpoint",
+      "file_type": "code",
+      "source_file": "app/routers/ask.py",
+      "source_location": "5-7",
+      "id": "endpoint_ask_post",
+      "community": 2,
+      "norm_label": "post /ask endpoint"
+    },
+    {
+      "label": "GET /health Endpoint",
+      "file_type": "code",
+      "source_file": "app/main.py",
+      "source_location": "8-10",
+      "id": "endpoint_health_get",
+      "community": 8,
+      "norm_label": "get /health endpoint"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "app_main_health",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "routers_ask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/main.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "app_main",
+      "target": "routers_ingest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "models_schemas",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "models_schemas",
+      "target": "models_schemas_askresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_schemas",
+      "target": "models_schemas_ingestresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "models_schemas_rationale_1",
+      "target": "models_schemas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "models_schemas_ingestresponse",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "models_schemas_ingestresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_ingest_response_fields",
+      "target": "models_schemas_ingestresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "models_schemas_askrequest",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "models_schemas_askresponse",
+      "target": "basemodel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L2",
+      "weight": 0.8,
+      "source": "askrequest",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "routers_ask",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_ask_request_accepts_image",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_ask_request_defaults_top_k",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_ask_request_rejects_missing_question",
+      "target": "models_schemas_askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L2",
+      "weight": 0.8,
+      "source": "askrequest",
+      "target": "models_schemas_askresponse",
+      "confidence_score": 0.5
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "routers_ask",
+      "target": "models_schemas_askresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "models_schemas_askresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_ask_response_sources_default_empty",
+      "target": "models_schemas_askresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "routers_ask",
+      "target": "routers_ask_ask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "routers_ask_ask",
+      "target": "askrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "routers_ingest",
+      "target": "routers_ingest_ingest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_atlas",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_atlas_rationale_1",
+      "target": "services_atlas",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_atlas_rationale_3",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_pipeline_has_vector_search_stage",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_pipeline_limit_matches_k",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_pipeline_path_is_embedding",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L55",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_pipeline_uses_custom_index_name",
+      "target": "services_atlas_vector_search_pipeline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "services_embedding",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "services_embedding",
+      "target": "services_embedding_rank_by_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "services_embedding",
+      "target": "services_embedding_to_vector",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "services_embedding",
+      "target": "services_gemini_embed_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_embedding_rationale_1",
+      "target": "services_embedding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "services_embedding_rank_by_similarity",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_cosine_identical_vectors_is_one",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_cosine_length_mismatch_raises",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L102",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_cosine_orthogonal_is_zero",
+      "target": "services_embedding_cosine_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "services_embedding_rationale_23",
+      "target": "services_embedding_rank_by_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "services_embedding_rank_by_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L115",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_rank_orders_most_similar_first",
+      "target": "services_embedding_rank_by_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_rank_returns_top_k",
+      "target": "services_embedding_rank_by_similarity",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "services_embedding_rationale_37",
+      "target": "services_embedding_to_vector",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "services_embedding_to_vector",
+      "target": "services_gemini_embed_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "services_gemini",
+      "target": "services_gemini_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "services_gemini",
+      "target": "services_gemini_caption_image",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "services_gemini",
+      "target": "services_gemini_embed_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "services_gemini_rationale_1",
+      "target": "services_gemini",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L93",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_answer_uses_image_when_provided",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L79",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_includes_sources_when_retrieved",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_accepts_image",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_defaults_top_k",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_rejects_missing_question",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_response_sources_default_empty",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L75",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_returns_answer_field",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L85",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_caption_image_returns_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L98",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_identical_vectors_is_one",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_length_mismatch_raises",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_orthogonal_is_zero",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L89",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_embed_text_returns_vector_of_expected_dim",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L121",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_end_to_end_ingest_then_ask",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_health_ok",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_health_status_code",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_response_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_returns_doc_id",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_has_vector_search_stage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_limit_matches_k",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_path_is_embedding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_uses_custom_index_name",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L113",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_rank_orders_most_similar_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_rank_returns_top_k",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_suite_rationale_1",
+      "target": "tests_test_suite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_suite_rationale_15",
+      "target": "tests_test_suite_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_health_ok",
+      "target": "tests_test_suite_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L68",
+      "weight": 1.0,
+      "source": "tests_test_suite_test_health_status_code",
+      "target": "tests_test_suite_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "6",
+      "source": "fastapi_app",
+      "target": "router_ask"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "5",
+      "source": "fastapi_app",
+      "target": "router_ingest"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/routers/ask.py",
+      "source_location": "2",
+      "source": "router_ask",
+      "target": "schema_ask_request"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/routers/ask.py",
+      "source_location": "2",
+      "source": "router_ask",
+      "target": "schema_ask_response"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/routers/ask.py",
+      "source_location": "5-6",
+      "source": "schema_ask_request",
+      "target": "endpoint_ask_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "9",
+      "source": "test_suite",
+      "target": "schema_ask_request"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "app/routers/ask.py",
+      "source_location": "5-6",
+      "source": "schema_ask_response",
+      "target": "endpoint_ask_post"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "9",
+      "source": "test_suite",
+      "target": "schema_ask_response"
+    },
+    {
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "app/routers/ingest.py",
+      "source_location": "4",
+      "source": "endpoint_ingest_post",
+      "target": "schema_ingest_response"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "9",
+      "source": "test_suite",
+      "target": "schema_ingest_response"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ask.py",
+      "source_location": "6",
+      "source": "endpoint_ask_post",
+      "target": "service_atlas"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ingest.py",
+      "source_location": "5",
+      "source": "endpoint_ingest_post",
+      "target": "service_atlas"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/atlas.py",
+      "source_location": "1",
+      "source": "service_atlas",
+      "target": "mongodb_atlas_vector_search"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/services/atlas.py",
+      "source": "pattern_service_layer",
+      "target": "service_atlas"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "10",
+      "source": "test_suite",
+      "target": "service_atlas"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ask.py",
+      "source_location": "6",
+      "source": "endpoint_ask_post",
+      "target": "service_embedding"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ingest.py",
+      "source_location": "5",
+      "source": "endpoint_ingest_post",
+      "target": "service_embedding"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/services/embedding.py",
+      "source": "pattern_service_layer",
+      "target": "service_embedding"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/embedding.py",
+      "source_location": "38",
+      "source": "service_embedding",
+      "target": "service_gemini"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ask.py",
+      "source_location": "6",
+      "source": "endpoint_ask_post",
+      "target": "service_gemini"
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "app/routers/ingest.py",
+      "source_location": "5",
+      "source": "endpoint_ingest_post",
+      "target": "service_gemini"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/services/gemini.py",
+      "source": "pattern_service_layer",
+      "target": "service_gemini"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/embedding.py",
+      "source_location": "30",
+      "source": "func_rank_by_similarity",
+      "target": "func_cosine_similarity"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "11",
+      "source": "test_suite",
+      "target": "func_cosine_similarity"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "11",
+      "source": "test_suite",
+      "target": "func_rank_by_similarity"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/embedding.py",
+      "source_location": "38",
+      "source": "func_to_vector",
+      "target": "func_embed_text"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/services/gemini.py",
+      "source_location": "2",
+      "source": "gemini_multimodal_reasoning",
+      "target": "func_caption_image"
+    },
+    {
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "app/services/gemini.py",
+      "source_location": "4",
+      "source": "gemini_multimodal_reasoning",
+      "target": "func_answer"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "8-9",
+      "source": "doc_claude_md",
+      "target": "pattern_service_layer"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "7",
+      "source": "doc_readme",
+      "target": "gemini_multimodal_reasoning"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "15-16",
+      "source": "doc_readme",
+      "target": "mongodb_atlas_vector_search"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "CLAUDE.md",
+      "source_location": "8-9",
+      "source": "rationale_service_isolation",
+      "target": "pattern_service_layer"
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "ingest_pipeline",
+      "label": "Ingest Pipeline: Caption \u2192 Embed \u2192 Store",
+      "nodes": [
+        "func_caption_image",
+        "func_to_vector",
+        "service_atlas"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "CLAUDE.md"
+    },
+    {
+      "id": "ask_pipeline",
+      "label": "Ask Pipeline: Retrieve \u2192 Reason \u2192 Answer",
+      "nodes": [
+        "service_atlas",
+        "service_gemini",
+        "endpoint_ask_post"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "CLAUDE.md"
+    }
+  ]
+}
