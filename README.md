@@ -1,0 +1,48 @@
+# Project 3 — Multimodal AI Agent with Gemini
+
+An agent that ingests visual documents — charts, diagrams, scanned pages — and answers questions by combining Gemini's multimodal reasoning with vector retrieval over a MongoDB Atlas knowledge base.
+
+## Stack
+
+- **Model:** Google Gemini (`gemini-1.5-pro` / `gemini-2.0-flash`) for native image + text reasoning
+- **Vector store:** MongoDB Atlas Vector Search
+- **Embeddings:** Gemini `text-embedding-004` (text) + image captions for indexing
+- **API:** FastAPI (async) with `/ingest` and `/ask` endpoints
+- **Pattern:** tool-calling loop (retrieve → reason → optionally re-retrieve)
+
+## Architecture
+
+```
+upload (image/PDF page) ──► Gemini caption + extract ──► embed ──► MongoDB Atlas Vector
+                                                                        │
+question + (optional image) ──► retrieve context ──► Gemini multimodal ──► grounded answer
+```
+
+MongoDB Atlas is both the document store and the vector index (one database, `$vectorSearch` aggregation stage).
+
+## Quickstart
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env   # GEMINI_API_KEY + MONGODB_URI
+uvicorn app.main:app --reload
+# POST an image to /ingest, then ask via /ask
+```
+
+## Project layout
+
+```
+app/
+  main.py            # FastAPI app + routes
+  routers/           # ingest + ask endpoints
+  services/          # gemini client, atlas vector search, embedding
+  models/            # pydantic request/response schemas
+data/                # sample charts/diagrams
+```
+
+## Atlas setup
+Create a vector search index named `vector_index` on the `embedding` field (dimensions matching the embedding model, cosine similarity). See `app/services/atlas.py` for the index definition snippet.
+
+## Notes
+This is the "managed cloud, multimodal" project — contrasts with the local stack of Project 2 and the agent-framework stack of Projects 1 & 4.
