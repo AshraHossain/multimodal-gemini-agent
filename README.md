@@ -20,15 +20,26 @@ question + (optional image) ──► retrieve context ──► Gemini multimod
 
 MongoDB Atlas is both the document store and the vector index (one database, `$vectorSearch` aggregation stage).
 
-## Quickstart
+## Getting Started
+
+Dependency management is [UV](https://docs.astral.sh/uv/)-based:
 
 ```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+uv sync
 cp .env.example .env   # GEMINI_API_KEY + MONGODB_URI
-uvicorn app.main:app --reload
+uv run uvicorn app.main:app --reload
+uv run pytest          # 17 pass today; 7 skipped pending /ingest, /ask, gemini.py
 # POST an image to /ingest, then ask via /ask
 ```
+
+`requirements.txt` is kept in sync for `pip install -r requirements.txt`
+workflows, but `uv sync` (with `pyproject.toml` + `uv.lock`) is the source
+of truth for the resolved environment.
+
+**Status:** early-stage scaffold — `/ingest`, `/ask`, and all of
+`app/services/gemini.py` currently raise `NotImplementedError`. See
+[PLANNING.md](PLANNING.md) for what's implemented vs. stubbed, and
+[TASK.md](TASK.md) for the prioritized backlog.
 
 ## Project layout
 
@@ -46,3 +57,12 @@ Create a vector search index named `vector_index` on the `embedding` field (dime
 
 ## Notes
 This is the "managed cloud, multimodal" project — contrasts with the local stack of Project 2 and the agent-framework stack of Projects 1 & 4.
+
+## Framework
+
+This repo follows the SuperClaude Framework structure used across this
+portfolio — see [PLANNING.md](PLANNING.md) for architecture (including
+what's implemented vs. stubbed) and [TASK.md](TASK.md) for the prioritized
+backlog. `plugins/README.md` is the reserved extension point for future
+Gemini/Atlas plugin integrations. See [CONTRIBUTING.md](CONTRIBUTING.md)
+for the full development setup.

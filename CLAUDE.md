@@ -28,4 +28,28 @@ An agent that understands visual documents (charts, diagrams, scanned pages) and
 `POST /ingest` stores a chart's content; `POST /ask` with a related question returns a Gemini answer grounded in retrieved context, served via `uvicorn app.main:app`.
 
 ## Testing
-20 tests in `tests/` covering schema validation, the Atlas query builder, the embedding shape, the Gemini service interface (mocked), and route behavior. Run with `pytest`.
+24 tests in `tests/` (the docstring there says "20-test suite" — stale, verified 24 via `pytest --collect-only`) covering schema validation, the Atlas query builder, the embedding shape, the Gemini service interface (mocked), and route behavior. Run with `pytest`. 17 pass today (pure schema/pipeline/ranking logic + `/health`); 7 are `@pytest.mark.skip`'d pending implementation of `/ingest`, `/ask`, and `app/services/gemini.py`.
+
+## Framework conventions
+
+This repo follows the SuperClaude Framework structure:
+
+- **`PLANNING.md`** — architecture reference: module map, request flow,
+  what's implemented vs. stubbed, and known constraints. Read this before
+  touching `app/`.
+- **`TASK.md`** — prioritized backlog (High/Medium/Low). Check here before
+  starting work — the stubbed routes and Gemini service functions are
+  already tracked, not new discoveries.
+- **`plugins/README.md`** — plugin extension point placeholder; no plugin
+  system exists yet, `app/services/` calls Gemini/Atlas directly instead.
+- Dependency management is **UV-based** (`pyproject.toml` + `uv.lock`) —
+  prefer `uv sync` / `uv run`, though `requirements.txt` is kept in sync
+  for tooling that expects it.
+
+## Commands
+
+```bash
+uv sync                                          # setup
+uv run uvicorn app.main:app --reload             # run locally
+uv run pytest                                    # tests (17 pass, 7 skipped pending implementation)
+```
