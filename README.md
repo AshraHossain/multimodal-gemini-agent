@@ -1,24 +1,21 @@
-# Project 3 — Multimodal AI Agent with Gemini
+# Multimodal AI Agent with Gemini
 
-An agent that ingests visual documents — charts, diagrams, scanned pages — and answers questions by combining Gemini's multimodal reasoning with vector retrieval over a MongoDB Atlas knowledge base.
+An agent that ingests visual documents — charts, diagrams, scanned pages — and answers questions by combining Google Gemini's multimodal reasoning (`google-genai`) with vector retrieval over a MongoDB Atlas knowledge base (`$vectorSearch`).
 
 ## Stack
 
-- **Model:** Google Gemini (`gemini-1.5-pro` / `gemini-2.0-flash`) for native image + text reasoning
-- **Vector store:** MongoDB Atlas Vector Search
-- **Embeddings:** Gemini `text-embedding-004` (text) + image captions for indexing
-- **API:** FastAPI (async) with `/ingest` and `/ask` endpoints
-- **Pattern:** tool-calling loop (retrieve → reason → optionally re-retrieve)
+- **Model:** Google Gemini (`gemini-2.5-flash` / `gemini-2.5-pro`) via `google-genai` for native image + text reasoning
+- **Vector store:** MongoDB Atlas Vector Search (`$vectorSearch` on `vector_index`) with an automatic offline in-memory fallback
+- **Embeddings:** Gemini `text-embedding-004`
+- **API:** FastAPI (async) with `POST /ingest`, `POST /ask`, and `GET /health`
 
 ## Architecture
 
-```
+```text
 upload (image/PDF page) ──► Gemini caption + extract ──► embed ──► MongoDB Atlas Vector
                                                                         │
 question + (optional image) ──► retrieve context ──► Gemini multimodal ──► grounded answer
 ```
-
-MongoDB Atlas is both the document store and the vector index (one database, `$vectorSearch` aggregation stage).
 
 ## Getting Started
 
@@ -26,43 +23,28 @@ Dependency management is [UV](https://docs.astral.sh/uv/)-based:
 
 ```bash
 uv sync
-cp .env.example .env   # GEMINI_API_KEY + MONGODB_URI
+cp .env.example .env   # set GEMINI_API_KEY + MONGODB_URI for live mode
 uv run uvicorn app.main:app --reload
-uv run pytest          # 17 pass today; 7 skipped pending /ingest, /ask, gemini.py
-# POST an image to /ingest, then ask via /ask
+uv run pytest --cov=app --cov-report=term-missing   # 30 pass offline (95% coverage)
+uv run ruff check .
 ```
 
-`requirements.txt` is kept in sync for `pip install -r requirements.txt`
-workflows, but `uv sync` (with `pyproject.toml` + `uv.lock`) is the source
-of truth for the resolved environment.
+## Project Layout
 
-**Status:** early-stage scaffold — `/ingest`, `/ask`, and all of
-`app/services/gemini.py` currently raise `NotImplementedError`. See
-[PLANNING.md](PLANNING.md) for what's implemented vs. stubbed, and
-[TASK.md](TASK.md) for the prioritized backlog.
-
-## Project layout
-
-```
+```text
 app/
-  main.py            # FastAPI app + routes
-  routers/           # ingest + ask endpoints
-  services/          # gemini client, atlas vector search, embedding
-  models/            # pydantic request/response schemas
-data/                # sample charts/diagrams
+  main.py              # FastAPI app + routes
+  routers/             # ingest + ask endpoints
+  services/            # gemini client, atlas vector search, embedding helpers
+  models/              # frozen pydantic request/response schemas
+data/
+  sample_chart.svg     # sample chart for smoke testing
+tests/
+  test_suite.py        # 30 offline unit + integration tests
+.agents/               # Antigravity rules + skills links
+.claude/               # Path-scoped rules + repo-specific skills
 ```
 
-## Atlas setup
-Create a vector search index named `vector_index` on the `embedding` field (dimensions matching the embedding model, cosine similarity). See `app/services/atlas.py` for the index definition snippet.
+## Atlas Setup
 
-## Notes
-This is the "managed cloud, multimodal" project — contrasts with the local stack of Project 2 and the agent-framework stack of Projects 1 & 4.
-
-## Framework
-
-This repo follows the SuperClaude Framework structure used across this
-portfolio — see [PLANNING.md](PLANNING.md) for architecture (including
-what's implemented vs. stubbed) and [TASK.md](TASK.md) for the prioritized
-backlog. `plugins/README.md` is the reserved extension point for future
-Gemini/Atlas plugin integrations. See [CONTRIBUTING.md](CONTRIBUTING.md)
-for the full development setup.
+Create a vector search index named `vector_index` on the `embedding` field (`cosine` similarity). See `VECTOR_INDEX_DEFINITION` in [atlas.py](app/services/atlas.py) or run the `atlas-vector-index` skill in `.agents/skills/atlas-vector-index/SKILL.md`.

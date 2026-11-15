@@ -1,55 +1,39 @@
 # CLAUDE.md — Multimodal AI Agent with Gemini
 
-## What we're building
-An agent that understands visual documents (charts, diagrams, scanned pages) and answers questions about them. Visual content is captioned/extracted by Gemini, embedded, and stored in MongoDB Atlas Vector Search. At query time we retrieve relevant context and let Gemini reason multimodally over the question plus any attached image.
+Read [AGENTS.md](AGENTS.md) for the shared project overview, architecture map, and core invariants.
 
-## Stack & conventions
-- Python 3.11+, FastAPI (async). Google Gemini for multimodal reasoning + embeddings. MongoDB Atlas Vector Search as the single store.
-- Pydantic models for all request/response bodies (`app/models/`).
-- Service layer (`app/services/`) isolates external SDKs (Gemini, Mongo) so routers stay thin.
-- Secrets in `.env`: `GEMINI_API_KEY`, `MONGODB_URI`. Atlas vector index name: `vector_index`.
+## What this repo is
 
-## Architecture map
-- `app/main.py` — FastAPI app, includes routers, health check.
-- `app/routers/ingest.py` — accept image/PDF page, caption + embed + store.
-- `app/routers/ask.py` — accept question (+ optional image), retrieve, call Gemini, return grounded answer.
-- `app/services/gemini.py` — multimodal generate + embeddings wrapper.
-- `app/services/atlas.py` — `$vectorSearch` aggregation + index definition snippet.
-- `app/services/embedding.py` — text/image → vector.
-- `app/models/` — `IngestRequest`, `AskRequest`, `AskResponse`.
-
-## Next concrete steps
-1. Define pydantic schemas, then `services/atlas.py` connection + vector search query.
-2. Implement `services/gemini.py` (caption an image, embed text, multimodal answer).
-3. Wire `/ingest` then `/ask`; test with a sample chart in `data/`.
-4. Document the Atlas index creation in README; add a startup check that the index exists.
-
-## Definition of done
-`POST /ingest` stores a chart's content; `POST /ask` with a related question returns a Gemini answer grounded in retrieved context, served via `uvicorn app.main:app`.
-
-## Testing
-24 tests in `tests/` (the docstring there says "20-test suite" — stale, verified 24 via `pytest --collect-only`) covering schema validation, the Atlas query builder, the embedding shape, the Gemini service interface (mocked), and route behavior. Run with `pytest`. 17 pass today (pure schema/pipeline/ranking logic + `/health`); 7 are `@pytest.mark.skip`'d pending implementation of `/ingest`, `/ask`, and `app/services/gemini.py`.
-
-## Framework conventions
-
-This repo follows the SuperClaude Framework structure:
-
-- **`PLANNING.md`** — architecture reference: module map, request flow,
-  what's implemented vs. stubbed, and known constraints. Read this before
-  touching `app/`.
-- **`TASK.md`** — prioritized backlog (High/Medium/Low). Check here before
-  starting work — the stubbed routes and Gemini service functions are
-  already tracked, not new discoveries.
-- **`plugins/README.md`** — plugin extension point placeholder; no plugin
-  system exists yet, `app/services/` calls Gemini/Atlas directly instead.
-- Dependency management is **UV-based** (`pyproject.toml` + `uv.lock`) —
-  prefer `uv sync` / `uv run`, though `requirements.txt` is kept in sync
-  for tooling that expects it.
+A Python 3.11+ FastAPI service that ingests visual documents (`POST /ingest`) and answers multimodal questions (`POST /ask`) using Google Gemini (`google-genai`) and MongoDB Atlas Vector Search (`$vectorSearch` on `vector_index`).
 
 ## Commands
 
 ```bash
-uv sync                                          # setup
-uv run uvicorn app.main:app --reload             # run locally
-uv run pytest                                    # tests (17 pass, 7 skipped pending implementation)
+uv sync                                                      # setup environment from uv.lock
+uv run uvicorn app.main:app --reload                         # run local API server
+uv run pytest                                                # offline unit + integration tests (30 pass)
+uv run pytest --cov=app --cov-report=term-missing            # verify >=80% coverage (currently 95%)
+uv run pytest -m live                                        # live Gemini + Atlas smoke tests
+uv run ruff check . && uv run ruff format --check .          # lint & formatting check
 ```
+
+## Layout
+
+- `app/main.py` — FastAPI app wiring `ingest` and `ask` routers + `GET /health`.
+- `app/models/schemas.py` — Frozen Pydantic models: `IngestRequest`, `IngestResponse`, `AskRequest`, `AskResponse`.
+- `app/routers/ingest.py` — `POST /ingest` (multipart file or JSON base64 -> caption -> embed -> store).
+- `app/routers/ask.py` — `POST /ask` (embed question -> retrieve top-k -> multimodal Gemini answer).
+- `app/services/gemini.py` — `caption_image`, `embed_text`, `answer` (`google-genai` + offline deterministic mode).
+- `app/services/atlas.py` — `vector_search_pipeline` (pure), `VECTOR_INDEX_DEFINITION`, `store_document`, `search_similar`.
+- `app/services/embedding.py` — `cosine_similarity`, `rank_by_similarity` (pure), and `to_vector`.
+- `data/sample_chart.svg` — Sample chart asset for local testing.
+- `tests/test_suite.py` — Offline unit and integration test suite.
+
+## Repo-Specific Rules
+
+- Keep `app/models/schemas.py` as the sole definition of request/response payloads (`ConfigDict(frozen=True)`).
+- Keep `app/routers/` free of direct `google.genai` or `pymongo` imports; delegate all external I/O to `app/services/`.
+- Keep `atlas.vector_search_pipeline`, `embedding.cosine_similarity`, and `embedding.rank_by_similarity` pure (no network/DB calls, no similarity math in prompts).
+- All default tests in `tests/test_suite.py` must run offline (`GEMINI_MOCK=1`, `ATLAS_MOCK=1`).
+- Path-scoped rules live in `.claude/rules/` (mirrored in `.agents/rules/`).
+- Repo-specific multi-step procedures live in `.claude/skills/` (linked in `.agents/skills/`).

@@ -1,0 +1,176 @@
+{
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/__init__.py": {
+    "mtime": 1794768572.226076,
+    "seen": 1794771989.232956,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/main.py": {
+    "mtime": 1794771665.2518334,
+    "seen": 1794771989.2329578,
+    "ast_hash": "cc2a331c727e289b8a515c0aa20c851d",
+    "semantic_hash": "cc2a331c727e289b8a515c0aa20c851d"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/models/__init__.py": {
+    "mtime": 1794768572.2262127,
+    "seen": 1794771989.232959,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/models/schemas.py": {
+    "mtime": 1794771665.266533,
+    "seen": 1794771989.23296,
+    "ast_hash": "9111b40c3a692ce4c887fe4f31ae94ae",
+    "semantic_hash": "9111b40c3a692ce4c887fe4f31ae94ae"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/__init__.py": {
+    "mtime": 1794768572.2263515,
+    "seen": 1794771989.23296,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/ask.py": {
+    "mtime": 1794771665.2773685,
+    "seen": 1794771989.23296,
+    "ast_hash": "a78f4ee131448fad79a3985dc7271489",
+    "semantic_hash": "a78f4ee131448fad79a3985dc7271489"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/ingest.py": {
+    "mtime": 1794771880.8740041,
+    "seen": 1794771989.232961,
+    "ast_hash": "309b863cf20278c20f03eae411e29648",
+    "semantic_hash": "309b863cf20278c20f03eae411e29648"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/__init__.py": {
+    "mtime": 1794768572.2265756,
+    "seen": 1794771989.232961,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/atlas.py": {
+    "mtime": 1794771665.2972426,
+    "seen": 1794771989.232961,
+    "ast_hash": "7661e21792152fe822531fbb5a15ff9c",
+    "semantic_hash": "7661e21792152fe822531fbb5a15ff9c"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/embedding.py": {
+    "mtime": 1794771665.3064854,
+    "seen": 1794771989.2329621,
+    "ast_hash": "49a9670377b466d7eb6e90837ad005be",
+    "semantic_hash": "49a9670377b466d7eb6e90837ad005be"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/gemini.py": {
+    "mtime": 1794771879.1641765,
+    "seen": 1794771989.2329621,
+    "ast_hash": "13f7f37af87a85c1ba1d05bdf2394e81",
+    "semantic_hash": "13f7f37af87a85c1ba1d05bdf2394e81"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/pyproject.toml": {
+    "mtime": 1794771665.3321278,
+    "seen": 1794771989.2329621,
+    "ast_hash": "6623d7ac7c77b4421e665a1653f979d7",
+    "semantic_hash": "6623d7ac7c77b4421e665a1653f979d7"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/tests/test_suite.py": {
+    "mtime": 1794771912.2872,
+    "seen": 1794771989.232963,
+    "ast_hash": "85fdcb3a637bbdca22d5418a57557d4b",
+    "semantic_hash": "85fdcb3a637bbdca22d5418a57557d4b"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/models-and-tests.md": {
+    "mtime": 1794771569.5356972,
+    "seen": 1794771989.232963,
+    "ast_hash": "b4b17e7d4913ba81834f2a357e5ae89e",
+    "semantic_hash": "b4b17e7d4913ba81834f2a357e5ae89e"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/routers.md": {
+    "mtime": 1794771566.926449,
+    "seen": 1794771989.232964,
+    "ast_hash": "5e569d85ad912c4c5a7cf65371f4fbd0",
+    "semantic_hash": "5e569d85ad912c4c5a7cf65371f4fbd0"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/services.md": {
+    "mtime": 1794771567.799322,
+    "seen": 1794771989.232964,
+    "ast_hash": "883776337d3619c5216e0887c520777d",
+    "semantic_hash": "883776337d3619c5216e0887c520777d"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/add-multimodal-endpoint/SKILL.md": {
+    "mtime": 1794771571.1530533,
+    "seen": 1794771989.232964,
+    "ast_hash": "089b5f9f9d7c2f3fa3fbf103cfb7d843",
+    "semantic_hash": "089b5f9f9d7c2f3fa3fbf103cfb7d843"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/atlas-vector-index/SKILL.md": {
+    "mtime": 1794771572.2516396,
+    "seen": 1794771989.2329652,
+    "ast_hash": "d5261d44d30edbbb58b4cd096a86174b",
+    "semantic_hash": "d5261d44d30edbbb58b4cd096a86174b"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.github/workflows/ci.yml": {
+    "mtime": 1794771601.0899835,
+    "seen": 1794771989.2329652,
+    "ast_hash": "1acc2597e4a53f971d245d37abc3fa22",
+    "semantic_hash": "1acc2597e4a53f971d245d37abc3fa22"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md": {
+    "mtime": 1794771563.237144,
+    "seen": 1794771989.2329652,
+    "ast_hash": "67b183c1fa68e67fdd4c9427659c5682",
+    "semantic_hash": "67b183c1fa68e67fdd4c9427659c5682"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CLAUDE.md": {
+    "mtime": 1794771665.1016,
+    "seen": 1794771989.232966,
+    "ast_hash": "1879de2263f7bbc174a06a4ab50e6215",
+    "semantic_hash": "1879de2263f7bbc174a06a4ab50e6215"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CONTRIBUTING.md": {
+    "mtime": 1794771665.1308484,
+    "seen": 1794771989.232966,
+    "ast_hash": "7d6ae5fa88b06c84dab7a3a83f4bcb91",
+    "semantic_hash": "7d6ae5fa88b06c84dab7a3a83f4bcb91"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/GEMINI.md": {
+    "mtime": 1794771564.97029,
+    "seen": 1794771989.232966,
+    "ast_hash": "ccbc481610646941b1dc696216c82b24",
+    "semantic_hash": "ccbc481610646941b1dc696216c82b24"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/PLANNING.md": {
+    "mtime": 1794771665.2004998,
+    "seen": 1794771989.232967,
+    "ast_hash": "2f6b6f463230225ac43e027d35f9d48c",
+    "semantic_hash": "2f6b6f463230225ac43e027d35f9d48c"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/README.md": {
+    "mtime": 1794771665.21924,
+    "seen": 1794771989.232967,
+    "ast_hash": "e581100cdd6bc87ab9c7035c484818a7",
+    "semantic_hash": "e581100cdd6bc87ab9c7035c484818a7"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/TASK.md": {
+    "mtime": 1794771887.6345031,
+    "seen": 1794771989.232967,
+    "ast_hash": "e82f0d8a34698c2c8ff125d90da08e61",
+    "semantic_hash": "e82f0d8a34698c2c8ff125d90da08e61"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/plugins/README.md": {
+    "mtime": 1794768572.2284586,
+    "seen": 1794771989.2329679,
+    "ast_hash": "36d3cb541cabf1fe28579174b927ef0c",
+    "semantic_hash": "36d3cb541cabf1fe28579174b927ef0c"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/requirements.txt": {
+    "mtime": 1794771400.3852825,
+    "seen": 1794771989.2329679,
+    "ast_hash": "c799e02d500185bc45aea1a490039ea3",
+    "semantic_hash": "c799e02d500185bc45aea1a490039ea3"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/data/sample_chart.svg": {
+    "mtime": 1794771599.3769693,
+    "seen": 1794771989.2329679,
+    "ast_hash": "f8215f9d66e9ad5343820584de9442b4",
+    "semantic_hash": "f8215f9d66e9ad5343820584de9442b4"
+  }
+}
