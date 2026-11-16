@@ -1,7 +1,7 @@
 # Multimodal AI Agent with Gemini & MongoDB Atlas
 
 [![CI](https://github.com/AshraHossain/multimodal-gemini-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/AshraHossain/multimodal-gemini-agent/actions)
-![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-99.7%25-brightgreen)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash%20%7C%20Pro-4F46E5)
 ![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-%24vectorSearch-10B981)

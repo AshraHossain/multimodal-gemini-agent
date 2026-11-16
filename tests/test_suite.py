@@ -14,6 +14,7 @@ from typing import Any
 import pytest
 from pydantic import ValidationError
 
+from app.eval import main as eval_main
 from app.eval import run_evaluation
 from app.models.schemas import AskRequest, AskResponse, IngestResponse
 from app.routers.ingest import MAX_UPLOAD_BYTES
@@ -127,6 +128,35 @@ def test_atlas_store_and_search_with_injected_collection():
     assert len(results) == 1 and results[0]["doc_id"] == "c1"
 
 
+@pytest.mark.unit
+def test_atlas_get_mongo_collection_branches(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setenv("ATLAS_MOCK", "0")
+    monkeypatch.setenv("MONGODB_URI", "")
+    assert atlas._get_mongo_collection() is None
+
+    monkeypatch.setenv("MONGODB_URI", "mongodb+srv://user:pass@cluster.mongodb.net")
+    assert atlas._get_mongo_collection() is None
+
+    class FakeDB(dict):
+        def __getitem__(self, name: str) -> str:
+            return f"coll:{name}"
+
+    class FakeMongoClient:
+        def __init__(self, uri: str, serverSelectionTimeoutMS: int = 3000) -> None:
+            self.uri = uri
+
+        def __getitem__(self, db_name: str) -> FakeDB:
+            return FakeDB()
+
+    import pymongo
+
+    monkeypatch.setattr(pymongo, "MongoClient", FakeMongoClient)
+    monkeypatch.setenv("MONGODB_URI", "mongodb://localhost:27017")
+    monkeypatch.setenv("MONGODB_DB", "test_db")
+    monkeypatch.setenv("MONGODB_COLLECTION", "test_docs")
+    assert atlas._get_mongo_collection() == "coll:test_docs"
+
+
 # --- API routes, telemetry & guardrails (integration, offline) ----------------
 @pytest.mark.integration
 def test_health_ok():
@@ -191,6 +221,12 @@ def test_ingest_rejects_empty_or_invalid_payload():
     client = _client()
     assert client.post("/ingest", content=b"").status_code == 400
     assert client.post("/ingest", json={"image_b64": "!!!not-base64!!!"}).status_code == 400
+    raw_ok = client.post(
+        "/ingest",
+        content=b"\x89PNG\r\n\x1a\nraw-bytes",
+        headers={"content-type": "application/octet-stream"},
+    )
+    assert raw_ok.status_code == 200
 
 
 @pytest.mark.integration
@@ -325,6 +361,26 @@ def test_gemini_validation_and_live_sdk_branch(monkeypatch: pytest.MonkeyPatch):
     assert gemini.embed_text("hello", dim=4) == [0.1, 0.2, 0.3, 0.4]
     assert gemini.answer("question?", ["ctx"], image_bytes=b"png") == "Mocked live SDK response"
 
+    # Cover empty embeddings error & placeholder API key & non-alphanumeric vector fallback
+    class EmptyEmbedModels(FakeModels):
+        def embed_content(self, model: str, contents: Any, config: Any) -> Any:
+            class EmptyResp:
+                embeddings: list[Any] = []
+
+            return EmptyResp()
+
+    class EmptyClient:
+        def __init__(self, api_key: str) -> None:
+            self.models = EmptyEmbedModels()
+
+    monkeypatch.setattr(genai_mod, "Client", EmptyClient)
+    with pytest.raises(RuntimeError):
+        gemini.embed_text("hello", dim=4)
+
+    monkeypatch.setenv("GEMINI_API_KEY", "your-gemini-key")
+    assert gemini._get_live_api_key() is None
+    assert len(gemini._deterministic_vector("???", dim=4)) == 4
+
 
 # --- ranking helpers (pure, unit) ---------------------------------------------
 @pytest.mark.unit
@@ -384,13 +440,17 @@ def test_end_to_end_ingest_then_ask():
 
 
 @pytest.mark.integration
-def test_evaluation_harness_scorecard(tmp_path: Path):
+def test_evaluation_harness_scorecard(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
     report_file = tmp_path / "eval_report.json"
     scorecard = run_evaluation(output_path=report_file)
     assert report_file.exists()
     assert scorecard["recall_at_3"] == 1.0
     assert scorecard["citation_grounding_rate"] == 1.0
     assert scorecard["guardrail_pass_rate"] == 1.0
+
+    eval_main()
+    captured = capsys.readouterr().out
+    assert "Evaluation Scorecard" in captured
 
 
 # --- live evaluation suite (`uv run pytest -m live`) --------------------------
