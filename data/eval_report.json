@@ -3,29 +3,29 @@
   "recall_at_3": 1.0,
   "citation_grounding_rate": 1.0,
   "guardrail_pass_rate": 1.0,
-  "latency_p50_ms": 2.01,
-  "latency_p95_ms": 26.61,
+  "latency_p50_ms": 1.85,
+  "latency_p95_ms": 11.45,
   "cases": [
     {
       "case_id": "EVAL-01-SVG-CHART",
       "chunks_ok": true,
       "recall_at_3": true,
       "grounded": true,
-      "latency_ms": 26.61
+      "latency_ms": 11.45
     },
     {
       "case_id": "EVAL-02-PNG-DIAGRAM",
       "chunks_ok": true,
       "recall_at_3": true,
       "grounded": true,
-      "latency_ms": 2.01
+      "latency_ms": 1.85
     },
     {
       "case_id": "EVAL-03-MULTIPAGE-PDF",
       "chunks_ok": true,
       "recall_at_3": true,
       "grounded": true,
-      "latency_ms": 1.76
+      "latency_ms": 1.73
     }
   ]
 }

@@ -9,25 +9,28 @@ A Python 3.11+ FastAPI service that ingests visual documents (`POST /ingest`) an
 ## Commands
 
 ```bash
-uv sync                                                      # setup environment from uv.lock
+make setup                                                   # uv sync
+make check                                                   # ruff + pytest (>=80% cov) + evaluation harness
 uv run uvicorn app.main:app --reload                         # run local API server
-uv run pytest                                                # offline unit + integration tests (30 pass)
-uv run pytest --cov=app --cov-report=term-missing            # verify >=80% coverage (currently 95%)
+uv run pytest                                                # offline unit + integration tests (36 pass)
+uv run pytest --cov=app --cov-report=term-missing            # verify >=80% coverage (currently 93%+)
 uv run pytest -m live                                        # live Gemini + Atlas smoke tests
+uv run python -m app.eval                                    # run evaluation benchmark -> data/eval_report.json
 uv run ruff check . && uv run ruff format --check .          # lint & formatting check
 ```
 
 ## Layout
 
-- `app/main.py` — FastAPI app wiring `ingest` and `ask` routers + `GET /health`.
+- `app/main.py` — FastAPI app, `X-Request-ID` & latency middleware, `GET /health`, `GET /readyz`.
+- `app/eval.py` — Reproducible multimodal evaluation & latency benchmark runner.
 - `app/models/schemas.py` — Frozen Pydantic models: `IngestRequest`, `IngestResponse`, `AskRequest`, `AskResponse`.
-- `app/routers/ingest.py` — `POST /ingest` (multipart file or JSON base64 -> caption -> embed -> store).
+- `app/routers/ingest.py` — `POST /ingest` (MIME/size guardrails, multi-page PDF chunking, caption -> embed -> store).
 - `app/routers/ask.py` — `POST /ask` (embed question -> retrieve top-k -> multimodal Gemini answer).
-- `app/services/gemini.py` — `caption_image`, `embed_text`, `answer` (`google-genai` + offline deterministic mode).
+- `app/services/gemini.py` — `caption_image`, `embed_text`, `answer`, `sanitize_untrusted_text`, `split_visual_chunks`.
 - `app/services/atlas.py` — `vector_search_pipeline` (pure), `VECTOR_INDEX_DEFINITION`, `store_document`, `search_similar`.
 - `app/services/embedding.py` — `cosine_similarity`, `rank_by_similarity` (pure), and `to_vector`.
-- `data/sample_chart.svg` — Sample chart asset for local testing.
-- `tests/test_suite.py` — Offline unit and integration test suite.
+- `data/` — `sample_chart.svg` and `eval_report.json`.
+- `tests/test_suite.py` — 36 offline unit/integration tests + 1 `@pytest.mark.live` test.
 
 ## Repo-Specific Rules
 

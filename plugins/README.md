@@ -1,10 +1,5 @@
 # plugins/
 
-Reserved for SuperClaude Framework plugin extensions for this project (e.g.
-alternative embedding providers, a swappable vector-store backend, or eval
-harnesses packaged as plugins).
+Extension directory for custom ingestion adapters, alternative embedding providers, or evaluation plugins.
 
-No plugins are defined yet. `multimodal-gemini-agent` currently calls Gemini
-and MongoDB Atlas directly from `app/services/` (`gemini.py`, `atlas.py`,
-`embedding.py`) rather than through an installable plugin interface — see
-`PLANNING.md` for the current (mostly stubbed) service layer.
+Core multimodal reasoning and vector search are implemented directly in `app/services/gemini.py` (`google-genai`) and `app/services/atlas.py` (`pymongo` `$vectorSearch`), while agent-level customizations live in `.agents/` (`.claude/`) and the global `gemini-core-workflow` Antigravity plugin.

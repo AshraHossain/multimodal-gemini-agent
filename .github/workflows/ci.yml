@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  test-and-lint:
+  test-lint-eval:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,3 +20,5 @@ jobs:
         run: uv run ruff check .
       - name: Run offline test suite with 80% coverage gate
         run: uv run pytest --cov=app --cov-report=term-missing --cov-fail-under=80
+      - name: Run golden evaluation & benchmark harness
+        run: uv run python -m app.eval
