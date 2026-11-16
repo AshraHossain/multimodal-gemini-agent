@@ -1,50 +1,129 @@
-# Multimodal AI Agent with Gemini
+# Multimodal AI Agent with Gemini & MongoDB Atlas
 
-An agent that ingests visual documents — charts, diagrams, scanned pages — and answers questions by combining Google Gemini's multimodal reasoning (`google-genai`) with vector retrieval over a MongoDB Atlas knowledge base (`$vectorSearch`).
+[![CI](https://github.com/AshraHossain/multimodal-gemini-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/AshraHossain/multimodal-gemini-agent/actions)
+![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash%20%7C%20Pro-4F46E5)
+![MongoDB Atlas](https://img.shields.io/badge/MongoDB%20Atlas-%24vectorSearch-10B981)
 
-## Stack
+An enterprise-grade FastAPI service that ingests visual documents — charts, architecture diagrams, and multi-page PDFs — and answers grounded questions over them by combining **Google Gemini** (`google-genai`, multimodal captioning/reasoning + `text-embedding-004`) with **MongoDB Atlas Vector Search** (`$vectorSearch` on `vector_index`).
 
-- **Model:** Google Gemini (`gemini-2.5-flash` / `gemini-2.5-pro`) via `google-genai` for native image + text reasoning
-- **Vector store:** MongoDB Atlas Vector Search (`$vectorSearch` on `vector_index`) with an automatic offline in-memory fallback
-- **Embeddings:** Gemini `text-embedding-004`
-- **API:** FastAPI (async) with `POST /ingest`, `POST /ask`, and `GET /health`
+---
 
-## Architecture
+## Key Enterprise Capabilities
 
-```text
-upload (image/PDF page) ──► Gemini caption + extract ──► embed ──► MongoDB Atlas Vector
-                                                                        │
-question + (optional image) ──► retrieve context ──► Gemini multimodal ──► grounded answer
+- **Multimodal Ingestion & Multi-Page PDF Chunking (`POST /ingest`)**: Accepts multipart file uploads or base64 JSON payloads (`IngestRequest`), automatically splits multi-page PDFs into per-page visual chunks (`#page-1`, `#page-2`, ...), extracts structured captions via Gemini, embeds them, and indexes into MongoDB Atlas.
+- **Grounded Multimodal Q&A (`POST /ask`)**: Embeds the user's question, executes a `$vectorSearch` aggregation pipeline (or pure cosine-similarity fallback in offline mode), frames untrusted context inside `<untrusted_context>` prompt-injection boundaries, and reasons multimodally over retrieved evidence + optional query-time images.
+- **Production Guardrails & Telemetry**:
+  - `X-Request-ID` correlation and `X-Process-Time-Ms` latency telemetry middleware on all endpoints.
+  - Strict MIME-type allowlist (`HTTP 415`) and `10 MB` payload ceiling (`HTTP 413`).
+  - Liveness (`GET /health`) and readiness (`GET /readyz`) probes.
+- **100% Offline-Testable & Reproducible Evaluation Suite**: Automatic deterministic fallback (`GEMINI_MOCK=1`, `ATLAS_MOCK=1`) with **96% test coverage** and an executable benchmark harness (`uv run python -m app.eval`).
+
+---
+
+## Architecture & Request Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant Client
+    participant API as FastAPI Router (ingest / ask)
+    participant Gem as Gemini Service (google-genai)
+    participant Emb as Embedding Service (Pure Math)
+    participant Atlas as MongoDB Atlas ($vectorSearch)
+
+    rect rgb(240, 248, 255)
+    Note over Client,Atlas: Ingestion Flow (POST /ingest)
+    Client->>API: Upload Image / Multi-page PDF (<=10MB)
+    API->>Gem: split_visual_chunks() + caption_image()
+    Gem-->>API: Sanitized visual summary per page
+    API->>Emb: to_vector(caption) -> gemini.embed_text()
+    Emb-->>API: 768-d float vector
+    API->>Atlas: store_document(doc_id, text, embedding, metadata)
+    API-->>Client: IngestResponse { doc_id, chunks } + X-Request-ID
+    end
+
+    rect rgb(245, 255, 245)
+    Note over Client,Atlas: Grounded Q&A Flow (POST /ask)
+    Client->>API: AskRequest { question, image_b64?, top_k }
+    API->>Emb: to_vector(question)
+    API->>Atlas: search_similar(query_vector, k=top_k)
+    Atlas-->>API: Top-k matching visual document chunks
+    API->>Gem: answer(question, <untrusted_context>, image_bytes)
+    Gem-->>API: Grounded response
+    API-->>Client: AskResponse { answer, sources } + X-Process-Time-Ms
+    end
 ```
 
-## Getting Started
+---
+
+## Quickstart
 
 Dependency management is [UV](https://docs.astral.sh/uv/)-based:
 
 ```bash
-uv sync
-cp .env.example .env   # set GEMINI_API_KEY + MONGODB_URI for live mode
-uv run uvicorn app.main:app --reload
-uv run pytest --cov=app --cov-report=term-missing   # 30 pass offline (95% coverage)
-uv run ruff check .
+make setup                           # uv sync
+cp .env.example .env                 # set GEMINI_API_KEY + MONGODB_URI for live mode
+make check                           # ruff lint + pytest (96% coverage) + evaluation harness
+make dev                             # uv run uvicorn app.main:app --reload
 ```
+
+### Smoke Test (`curl`)
+
+```bash
+# 1. Readiness probe
+curl -i http://127.0.0.1:8000/readyz
+
+# 2. Ingest sample SVG chart
+curl -sS -X POST http://127.0.0.1:8000/ingest \
+  -F "file=@data/sample_chart.svg;type=image/svg+xml"
+
+# 3. Ask a grounded question
+curl -sS -X POST http://127.0.0.1:8000/ask \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What are the quarterly revenue values?", "top_k": 3}'
+```
+
+---
+
+## Evaluation & Benchmark Scorecard (`make eval`)
+
+Run `uv run python -m app.eval` to execute the golden multimodal benchmark and write [data/eval_report.json](data/eval_report.json):
+
+| Case ID | Asset Type | Chunks OK | Recall@3 | Citation Grounded |
+|---|---|---|---|---|
+| `EVAL-01-SVG-CHART` | `image/svg+xml` | `True` (1) | `True` | `True` |
+| `EVAL-02-PNG-DIAGRAM` | `image/png` | `True` (1) | `True` | `True` |
+| `EVAL-03-MULTIPAGE-PDF` | `application/pdf` (3 pages) | `True` (3) | `True` | `True` |
+
+- **Recall@3**: `100.0%`
+- **Citation Grounding Rate**: `100.0%`
+- **Security Guardrail Pass Rate (`415` / `400` / Injection Framing)**: `100.0%`
+
+---
 
 ## Project Layout
 
 ```text
 app/
-  main.py              # FastAPI app + routes
-  routers/             # ingest + ask endpoints
-  services/            # gemini client, atlas vector search, embedding helpers
-  models/              # frozen pydantic request/response schemas
+  main.py              # FastAPI app, telemetry middleware, /health & /readyz
+  eval.py              # Reproducible multimodal evaluation & benchmark runner
+  routers/             # POST /ingest (MIME/size guardrails, PDF splitting) & POST /ask
+  services/            # Gemini SDK wrapper, Atlas $vectorSearch builder, pure cosine math
+  models/              # Frozen Pydantic DTOs (IngestRequest, IngestResponse, AskRequest, AskResponse)
 data/
-  sample_chart.svg     # sample chart for smoke testing
+  sample_chart.svg     # Sample chart asset for smoke testing
+  eval_report.json     # Generated evaluation scorecard
 tests/
-  test_suite.py        # 30 offline unit + integration tests
+  test_suite.py        # Offline unit + integration suite (96% coverage) + @pytest.mark.live
 .agents/               # Antigravity rules + skills links
 .claude/               # Path-scoped rules + repo-specific skills
 ```
 
-## Atlas Setup
+## Documentation & Governance
 
-Create a vector search index named `vector_index` on the `embedding` field (`cosine` similarity). See `VECTOR_INDEX_DEFINITION` in [atlas.py](app/services/atlas.py) or run the `atlas-vector-index` skill in `.agents/skills/atlas-vector-index/SKILL.md`.
+- [AGENTS.md](AGENTS.md) & [GEMINI.md](GEMINI.md) — Agent instructions, scoped rules, and skills
+- [PLANNING.md](PLANNING.md) — Detailed module architecture and data flow
+- [SECURITY.md](SECURITY.md) — Threat model and security controls
+- [CONTRIBUTING.md](CONTRIBUTING.md) — TDD workflow and contribution standards

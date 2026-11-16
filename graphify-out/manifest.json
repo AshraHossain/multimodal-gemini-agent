@@ -6,10 +6,10 @@
     "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/main.py": {
-    "mtime": 1794771665.2518334,
-    "seen": 1794771989.2329578,
-    "ast_hash": "cc2a331c727e289b8a515c0aa20c851d",
-    "semantic_hash": "cc2a331c727e289b8a515c0aa20c851d"
+    "mtime": 1794793809.560678,
+    "seen": 1794793882.312626,
+    "ast_hash": "c662af78405c72872bef2d600d889e6a",
+    "semantic_hash": "c662af78405c72872bef2d600d889e6a"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/models/__init__.py": {
     "mtime": 1794768572.2262127,
@@ -36,10 +36,10 @@
     "semantic_hash": "a78f4ee131448fad79a3985dc7271489"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/ingest.py": {
-    "mtime": 1794793175.5823138,
-    "seen": 1794793275.572727,
-    "ast_hash": "309b863cf20278c20f03eae411e29648",
-    "semantic_hash": "309b863cf20278c20f03eae411e29648"
+    "mtime": 1794793748.6099463,
+    "seen": 1794793882.312629,
+    "ast_hash": "02a6c72c5b70abf70b60f66c478c95ae",
+    "semantic_hash": "02a6c72c5b70abf70b60f66c478c95ae"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/__init__.py": {
     "mtime": 1794768572.2265756,
@@ -60,10 +60,10 @@
     "semantic_hash": "49a9670377b466d7eb6e90837ad005be"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/services/gemini.py": {
-    "mtime": 1794771879.1641765,
-    "seen": 1794771989.2329621,
-    "ast_hash": "13f7f37af87a85c1ba1d05bdf2394e81",
-    "semantic_hash": "13f7f37af87a85c1ba1d05bdf2394e81"
+    "mtime": 1794793853.918843,
+    "seen": 1794793882.3126311,
+    "ast_hash": "7d68bae1ed4ee04792ad9b0d79bc7544",
+    "semantic_hash": "7d68bae1ed4ee04792ad9b0d79bc7544"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/pyproject.toml": {
     "mtime": 1794771665.3321278,
@@ -72,10 +72,10 @@
     "semantic_hash": "6623d7ac7c77b4421e665a1653f979d7"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/tests/test_suite.py": {
-    "mtime": 1794793175.6569586,
-    "seen": 1794793275.57273,
-    "ast_hash": "85fdcb3a637bbdca22d5418a57557d4b",
-    "semantic_hash": "85fdcb3a637bbdca22d5418a57557d4b"
+    "mtime": 1794793757.397287,
+    "seen": 1794793882.312632,
+    "ast_hash": "6ab648711f7f37ac43dbf0c8541f34b3",
+    "semantic_hash": "6ab648711f7f37ac43dbf0c8541f34b3"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/models-and-tests.md": {
     "mtime": 1794771569.5356972,
@@ -144,10 +144,10 @@
     "semantic_hash": "2f6b6f463230225ac43e027d35f9d48c"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/README.md": {
-    "mtime": 1794771665.21924,
-    "seen": 1794771989.232967,
-    "ast_hash": "e581100cdd6bc87ab9c7035c484818a7",
-    "semantic_hash": "e581100cdd6bc87ab9c7035c484818a7"
+    "mtime": 1794793756.1089134,
+    "seen": 1794793882.3126369,
+    "ast_hash": "9b8539278a03f31dfd285160dc104a79",
+    "semantic_hash": "9b8539278a03f31dfd285160dc104a79"
   },
   "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/TASK.md": {
     "mtime": 1794793175.5630662,
@@ -172,5 +172,23 @@
     "seen": 1794771989.2329679,
     "ast_hash": "f8215f9d66e9ad5343820584de9442b4",
     "semantic_hash": "f8215f9d66e9ad5343820584de9442b4"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/eval.py": {
+    "mtime": 1794793812.6168783,
+    "seen": 1794793882.312625,
+    "ast_hash": "952d14cbad54ec99be5cea1d1b662d69",
+    "semantic_hash": "952d14cbad54ec99be5cea1d1b662d69"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/data/eval_report.json": {
+    "mtime": 1794793856.1087055,
+    "seen": 1794793882.3126311,
+    "ast_hash": "b22f3a24b8c081d62ef49f8bcd7b1c23",
+    "semantic_hash": "b22f3a24b8c081d62ef49f8bcd7b1c23"
+  },
+  "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/SECURITY.md": {
+    "mtime": 1794793753.5099034,
+    "seen": 1794793882.312638,
+    "ast_hash": "6257ca6d1287f4afe3f04109c9d56095",
+    "semantic_hash": "6257ca6d1287f4afe3f04109c9d56095"
   }
 }

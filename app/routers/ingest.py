@@ -13,6 +13,17 @@ from app.services import atlas, embedding, gemini
 
 router = APIRouter()
 
+ALLOWED_MIME_TYPES: frozenset[str] = frozenset(
+    {
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+        "image/svg+xml",
+        "application/pdf",
+    }
+)
+MAX_UPLOAD_BYTES: int = 10 * 1024 * 1024  # 10 MB
+
 
 @router.post("/ingest", response_model=IngestResponse)
 async def ingest(
@@ -26,7 +37,7 @@ async def ingest(
 
     if file is not None:
         image_bytes = await file.read()
-        mime_type = file.content_type or "image/png"
+        mime_type = (file.content_type or "image/png").split(";")[0].strip().lower()
         doc_id = file.filename
     else:
         content_type = request.headers.get("content-type", "")
@@ -39,7 +50,7 @@ async def ingest(
                 raise HTTPException(
                     status_code=400, detail="Invalid base64 image payload"
                 ) from exc
-            mime_type = req.mime_type
+            mime_type = req.mime_type.split(";")[0].strip().lower()
             doc_id = req.source_id
         else:
             raw = await request.body()
@@ -48,6 +59,18 @@ async def ingest(
 
     if not image_bytes:
         raise HTTPException(status_code=400, detail="No visual document bytes provided")
+
+    if mime_type not in ALLOWED_MIME_TYPES:
+        raise HTTPException(
+            status_code=415,
+            detail=f"Unsupported media type '{mime_type}'. Allowed: {sorted(ALLOWED_MIME_TYPES)}",
+        )
+
+    if len(image_bytes) > MAX_UPLOAD_BYTES:
+        raise HTTPException(
+            status_code=413,
+            detail=f"Payload size {len(image_bytes)} bytes exceeds {MAX_UPLOAD_BYTES} byte limit",
+        )
 
     base_doc_id = doc_id or f"doc-{uuid.uuid4().hex[:8]}"
     page_chunks = gemini.split_visual_chunks(image_bytes, mime_type=mime_type)

@@ -13,13 +13,13 @@
           "rule_routers",
           "rule_services",
           "rule_models_tests",
-          "claude_skills_add_multimodal_endpoint_skill_add_endpoint",
-          "claude_skills_atlas_vector_index_skill_atlas_index"
+          "skill_add_endpoint",
+          "skill_atlas_index"
         ],
         "relation": "form",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
-        "source_file": "AGENTS.md"
+        "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md"
       },
       {
         "id": "ask_grounded_pipeline",
@@ -34,22 +34,7 @@
         "relation": "participate_in",
         "confidence": "EXTRACTED",
         "confidence_score": 1.0,
-        "source_file": "app/routers/ask.py"
-      },
-      {
-        "id": "ingest_multimodal_pipeline",
-        "label": "Ingest Pipeline: Split -> Caption -> Embed -> Store",
-        "nodes": [
-          "app_routers_ingest_ingest",
-          "app_services_gemini_split_visual_chunks",
-          "app_services_gemini_caption_image",
-          "app_services_embedding_to_vector",
-          "app_services_atlas_store_document"
-        ],
-        "relation": "participate_in",
-        "confidence": "EXTRACTED",
-        "confidence_score": 1.0,
-        "source_file": "app/routers/ingest.py"
+        "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/ask.py"
       }
     ]
   },
@@ -60,11 +45,23 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 1,
       "file_type": "code",
       "norm_label": "askrequest",
       "source_file": "app/models/schemas.py",
       "source_location": "L26"
+    },
+    {
+      "id": "app_eval_evalcase",
+      "label": "EvalCase",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "evalcase",
+      "source_file": "app/eval.py",
+      "source_location": "L24"
     },
     {
       "id": "app_models_schemas_askresponse",
@@ -72,7 +69,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 6,
       "file_type": "code",
       "norm_label": "askresponse",
       "source_file": "app/models/schemas.py",
@@ -84,7 +81,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 6,
       "file_type": "code",
       "norm_label": "ingestrequest",
       "source_file": "app/models/schemas.py",
@@ -96,7 +93,7 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 0,
+      "community": 6,
       "file_type": "code",
       "norm_label": "ingestresponse",
       "source_file": "app/models/schemas.py",
@@ -111,40 +108,172 @@
       "file_type": "code",
       "norm_label": "health()",
       "source_file": "app/main.py",
-      "source_location": "L11"
+      "source_location": "L39"
     },
     {
-      "id": "tests_test_suite_test_ask_request_accepts_image",
-      "label": "test_ask_request_accepts_image()",
+      "id": "app_main_readyz",
+      "label": "readyz()",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
       "file_type": "code",
-      "norm_label": "test_ask_request_accepts_image()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L49"
+      "norm_label": "readyz()",
+      "source_file": "app/main.py",
+      "source_location": "L45"
     },
     {
-      "id": "tests_test_suite_test_ask_response_sources_default_empty",
-      "label": "test_ask_response_sources_default_empty()",
+      "id": "app_main_telemetry_and_correlation_middleware",
+      "label": "telemetry_and_correlation_middleware()",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
       "file_type": "code",
-      "norm_label": "test_ask_response_sources_default_empty()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L54"
+      "norm_label": "telemetry_and_correlation_middleware()",
+      "source_file": "app/main.py",
+      "source_location": "L24"
     },
     {
-      "id": "tests_test_suite_test_ingest_response_fields",
-      "label": "test_ingest_response_fields()",
+      "id": "app_services_gemini_answer",
+      "label": "answer()",
       "_callable": true,
       "_origin": "ast",
       "community": 0,
       "file_type": "code",
-      "norm_label": "test_ingest_response_fields()",
+      "norm_label": "answer()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L142"
+    },
+    {
+      "id": "app_services_gemini_caption_image",
+      "label": "caption_image()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "caption_image()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L82"
+    },
+    {
+      "id": "app_services_gemini_deterministic_vector",
+      "label": "_deterministic_vector()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "_deterministic_vector()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L66"
+    },
+    {
+      "id": "app_services_gemini_embed_text",
+      "label": "embed_text()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "embed_text()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L116"
+    },
+    {
+      "id": "app_services_gemini_get_live_api_key",
+      "label": "_get_live_api_key()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "_get_live_api_key()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L56"
+    },
+    {
+      "id": "app_services_gemini_sanitize_untrusted_text",
+      "label": "sanitize_untrusted_text()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "sanitize_untrusted_text()",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L23"
+    },
+    {
+      "id": "tests_test_suite_test_answer_uses_image_when_provided",
+      "label": "test_answer_uses_image_when_provided()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "test_answer_uses_image_when_provided()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L59"
+      "source_location": "L280"
+    },
+    {
+      "id": "tests_test_suite_test_caption_image_returns_text",
+      "label": "test_caption_image_returns_text()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "test_caption_image_returns_text()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L266"
+    },
+    {
+      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch",
+      "label": "test_gemini_validation_and_live_sdk_branch()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "test_gemini_validation_and_live_sdk_branch()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L288"
+    },
+    {
+      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_embed_content",
+      "label": "embed_content()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "embed_content()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L312"
+    },
+    {
+      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_generate_content",
+      "label": "generate_content()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "generate_content()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L309"
+    },
+    {
+      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_init",
+      "label": "__init__()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "__init__()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L316"
+    },
+    {
+      "id": "tests_test_suite_test_sanitize_untrusted_text_strips_injection_boundaries",
+      "label": "test_sanitize_untrusted_text_strips_injection_boundaries()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "test_sanitize_untrusted_text_strips_injection_boundaries()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L250"
     },
     {
       "id": "app_services_atlas_vector_search_pipeline",
@@ -169,15 +298,15 @@
       "source_location": "L12"
     },
     {
-      "id": "app_services_embedding_rank_by_similarity",
-      "label": "rank_by_similarity()",
+      "id": "tests_test_suite_test_ask_request_accepts_image",
+      "label": "test_ask_request_accepts_image()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "file_type": "code",
-      "norm_label": "rank_by_similarity()",
-      "source_file": "app/services/embedding.py",
-      "source_location": "L23"
+      "norm_label": "test_ask_request_accepts_image()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L52"
     },
     {
       "id": "tests_test_suite_test_ask_request_defaults_top_k",
@@ -188,7 +317,7 @@
       "file_type": "code",
       "norm_label": "test_ask_request_defaults_top_k()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L44"
+      "source_location": "L47"
     },
     {
       "id": "tests_test_suite_test_ask_request_rejects_missing_question",
@@ -199,7 +328,18 @@
       "file_type": "code",
       "norm_label": "test_ask_request_rejects_missing_question()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L65"
+      "source_location": "L68"
+    },
+    {
+      "id": "tests_test_suite_test_ask_response_sources_default_empty",
+      "label": "test_ask_response_sources_default_empty()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "test_ask_response_sources_default_empty()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L57"
     },
     {
       "id": "tests_test_suite_test_cosine_identical_vectors_is_one",
@@ -210,7 +350,7 @@
       "file_type": "code",
       "norm_label": "test_cosine_identical_vectors_is_one()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L281"
+      "source_location": "L331"
     },
     {
       "id": "tests_test_suite_test_cosine_length_mismatch_raises",
@@ -221,7 +361,7 @@
       "file_type": "code",
       "norm_label": "test_cosine_length_mismatch_raises()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L296"
+      "source_location": "L346"
     },
     {
       "id": "tests_test_suite_test_cosine_orthogonal_is_zero",
@@ -232,7 +372,7 @@
       "file_type": "code",
       "norm_label": "test_cosine_orthogonal_is_zero()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L286"
+      "source_location": "L336"
     },
     {
       "id": "tests_test_suite_test_cosine_zero_vector_returns_zero",
@@ -243,7 +383,18 @@
       "file_type": "code",
       "norm_label": "test_cosine_zero_vector_returns_zero()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L291"
+      "source_location": "L341"
+    },
+    {
+      "id": "tests_test_suite_test_ingest_response_fields",
+      "label": "test_ingest_response_fields()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "code",
+      "norm_label": "test_ingest_response_fields()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L62"
     },
     {
       "id": "tests_test_suite_test_pipeline_has_vector_search_stage",
@@ -254,7 +405,7 @@
       "file_type": "code",
       "norm_label": "test_pipeline_has_vector_search_stage()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L79"
+      "source_location": "L82"
     },
     {
       "id": "tests_test_suite_test_pipeline_limit_matches_k",
@@ -265,7 +416,7 @@
       "file_type": "code",
       "norm_label": "test_pipeline_limit_matches_k()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L85"
+      "source_location": "L88"
     },
     {
       "id": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
@@ -276,7 +427,7 @@
       "file_type": "code",
       "norm_label": "test_pipeline_num_candidates_scales_with_k()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L91"
+      "source_location": "L94"
     },
     {
       "id": "tests_test_suite_test_pipeline_path_is_embedding",
@@ -287,7 +438,7 @@
       "file_type": "code",
       "norm_label": "test_pipeline_path_is_embedding()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L103"
+      "source_location": "L106"
     },
     {
       "id": "tests_test_suite_test_pipeline_uses_custom_index_name",
@@ -298,29 +449,7 @@
       "file_type": "code",
       "norm_label": "test_pipeline_uses_custom_index_name()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L97"
-    },
-    {
-      "id": "tests_test_suite_test_rank_orders_most_similar_first",
-      "label": "test_rank_orders_most_similar_first()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "test_rank_orders_most_similar_first()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L309"
-    },
-    {
-      "id": "tests_test_suite_test_rank_returns_top_k",
-      "label": "test_rank_returns_top_k()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "code",
-      "norm_label": "test_rank_returns_top_k()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L302"
+      "source_location": "L100"
     },
     {
       "id": "tests_test_suite_test_schemas_are_immutable",
@@ -331,14 +460,168 @@
       "file_type": "code",
       "norm_label": "test_schemas_are_immutable()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L71"
+      "source_location": "L74"
+    },
+    {
+      "id": "tests_test_suite_client",
+      "label": "_client()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "_client()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L36"
+    },
+    {
+      "id": "tests_test_suite_test_ask_includes_sources_when_retrieved",
+      "label": "test_ask_includes_sources_when_retrieved()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ask_includes_sources_when_retrieved()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L236"
+    },
+    {
+      "id": "tests_test_suite_test_ask_rejects_invalid_base64",
+      "label": "test_ask_rejects_invalid_base64()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ask_rejects_invalid_base64()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L230"
+    },
+    {
+      "id": "tests_test_suite_test_ask_returns_answer_field",
+      "label": "test_ask_returns_answer_field()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ask_returns_answer_field()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L222"
+    },
+    {
+      "id": "tests_test_suite_test_end_to_end_ingest_then_ask",
+      "label": "test_end_to_end_ingest_then_ask()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_end_to_end_ingest_then_ask()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L367"
+    },
+    {
+      "id": "tests_test_suite_test_evaluation_harness_scorecard",
+      "label": "test_evaluation_harness_scorecard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_evaluation_harness_scorecard()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L387"
+    },
+    {
+      "id": "tests_test_suite_test_health_ok",
+      "label": "test_health_ok()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_health_ok()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L132"
+    },
+    {
+      "id": "tests_test_suite_test_health_status_code",
+      "label": "test_health_status_code()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_health_status_code()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L140"
+    },
+    {
+      "id": "tests_test_suite_test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload",
+      "label": "test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L197"
+    },
+    {
+      "id": "tests_test_suite_test_ingest_multipage_pdf_splits_into_page_chunks",
+      "label": "test_ingest_multipage_pdf_splits_into_page_chunks()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ingest_multipage_pdf_splits_into_page_chunks()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L165"
+    },
+    {
+      "id": "tests_test_suite_test_ingest_rejects_empty_or_invalid_payload",
+      "label": "test_ingest_rejects_empty_or_invalid_payload()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ingest_rejects_empty_or_invalid_payload()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L190"
+    },
+    {
+      "id": "tests_test_suite_test_ingest_returns_doc_id",
+      "label": "test_ingest_returns_doc_id()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_ingest_returns_doc_id()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L155"
+    },
+    {
+      "id": "tests_test_suite_test_live_gemini_and_atlas_roundtrip",
+      "label": "test_live_gemini_and_atlas_roundtrip()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_live_gemini_and_atlas_roundtrip()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L398"
+    },
+    {
+      "id": "tests_test_suite_test_readyz_reports_modes",
+      "label": "test_readyz_reports_modes()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "test_readyz_reports_modes()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L145"
     },
     {
       "id": "app_routers_ask_ask",
       "label": "ask()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "ask()",
       "source_file": "app/routers/ask.py",
@@ -349,18 +632,18 @@
       "label": "ingest()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "ingest()",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L18"
+      "source_location": "L29"
     },
     {
       "id": "app_services_embedding_to_vector",
       "label": "to_vector()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "to_vector()",
       "source_file": "app/services/embedding.py",
@@ -371,275 +654,77 @@
       "label": "split_visual_chunks()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "split_visual_chunks()",
       "source_file": "app/services/gemini.py",
-      "source_location": "L22"
+      "source_location": "L29"
     },
     {
       "id": "tests_test_suite_test_embed_text_returns_vector_of_expected_dim",
       "label": "test_embed_text_returns_vector_of_expected_dim()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "test_embed_text_returns_vector_of_expected_dim()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L222"
+      "source_location": "L272"
     },
     {
       "id": "tests_test_suite_test_split_visual_chunks_validation",
       "label": "test_split_visual_chunks_validation()",
       "_callable": true,
       "_origin": "ast",
-      "community": 2,
+      "community": 3,
       "file_type": "code",
       "norm_label": "test_split_visual_chunks_validation()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L209"
-    },
-    {
-      "id": "app_services_gemini_answer",
-      "label": "answer()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "answer()",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L121"
-    },
-    {
-      "id": "app_services_gemini_caption_image",
-      "label": "caption_image()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "caption_image()",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L67"
-    },
-    {
-      "id": "app_services_gemini_deterministic_vector",
-      "label": "_deterministic_vector()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "_deterministic_vector()",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L59"
-    },
-    {
-      "id": "app_services_gemini_embed_text",
-      "label": "embed_text()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "embed_text()",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L95"
-    },
-    {
-      "id": "app_services_gemini_get_live_api_key",
-      "label": "_get_live_api_key()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "_get_live_api_key()",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L49"
-    },
-    {
-      "id": "tests_test_suite_test_answer_uses_image_when_provided",
-      "label": "test_answer_uses_image_when_provided()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "test_answer_uses_image_when_provided()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L230"
-    },
-    {
-      "id": "tests_test_suite_test_caption_image_returns_text",
-      "label": "test_caption_image_returns_text()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "test_caption_image_returns_text()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L216"
-    },
-    {
-      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch",
-      "label": "test_gemini_validation_and_live_sdk_branch()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "test_gemini_validation_and_live_sdk_branch()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L238"
-    },
-    {
-      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_embed_content",
-      "label": "embed_content()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "embed_content()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L262"
-    },
-    {
-      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_generate_content",
-      "label": "generate_content()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "generate_content()",
       "source_file": "tests/test_suite.py",
       "source_location": "L259"
     },
     {
-      "id": "tests_test_suite_test_gemini_validation_and_live_sdk_branch_init",
-      "label": "__init__()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "__init__()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L266"
-    },
-    {
-      "id": "tests_test_suite_client",
-      "label": "_client()",
+      "id": "app_eval_main",
+      "label": "main()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
       "file_type": "code",
-      "norm_label": "_client()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L33"
+      "norm_label": "main()",
+      "source_file": "app/eval.py",
+      "source_location": "L152"
     },
     {
-      "id": "tests_test_suite_test_ask_includes_sources_when_retrieved",
-      "label": "test_ask_includes_sources_when_retrieved()",
+      "id": "app_eval_run_evaluation",
+      "label": "run_evaluation()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
       "file_type": "code",
-      "norm_label": "test_ask_includes_sources_when_retrieved()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L195"
+      "norm_label": "run_evaluation()",
+      "source_file": "app/eval.py",
+      "source_location": "L72"
     },
     {
-      "id": "tests_test_suite_test_ask_rejects_invalid_base64",
-      "label": "test_ask_rejects_invalid_base64()",
+      "id": "app_services_atlas_reset_memory_store",
+      "label": "reset_memory_store()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
       "file_type": "code",
-      "norm_label": "test_ask_rejects_invalid_base64()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L189"
+      "norm_label": "reset_memory_store()",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L29"
     },
     {
-      "id": "tests_test_suite_test_ask_returns_answer_field",
-      "label": "test_ask_returns_answer_field()",
+      "id": "tests_test_suite_clean_offline_environment",
+      "label": "_clean_offline_environment()",
       "_callable": true,
       "_origin": "ast",
       "community": 4,
       "file_type": "code",
-      "norm_label": "test_ask_returns_answer_field()",
+      "norm_label": "_clean_offline_environment()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L181"
-    },
-    {
-      "id": "tests_test_suite_test_end_to_end_ingest_then_ask",
-      "label": "test_end_to_end_ingest_then_ask()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_end_to_end_ingest_then_ask()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L317"
-    },
-    {
-      "id": "tests_test_suite_test_health_ok",
-      "label": "test_health_ok()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_health_ok()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L129"
-    },
-    {
-      "id": "tests_test_suite_test_health_status_code",
-      "label": "test_health_status_code()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_health_status_code()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L134"
-    },
-    {
-      "id": "tests_test_suite_test_ingest_multipage_pdf_splits_into_page_chunks",
-      "label": "test_ingest_multipage_pdf_splits_into_page_chunks()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_ingest_multipage_pdf_splits_into_page_chunks()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L149"
-    },
-    {
-      "id": "tests_test_suite_test_ingest_rejects_empty_or_invalid_payload",
-      "label": "test_ingest_rejects_empty_or_invalid_payload()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_ingest_rejects_empty_or_invalid_payload()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L174"
-    },
-    {
-      "id": "tests_test_suite_test_ingest_returns_doc_id",
-      "label": "test_ingest_returns_doc_id()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_ingest_returns_doc_id()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L139"
-    },
-    {
-      "id": "tests_test_suite_test_live_gemini_and_atlas_roundtrip",
-      "label": "test_live_gemini_and_atlas_roundtrip()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "file_type": "code",
-      "norm_label": "test_live_gemini_and_atlas_roundtrip()",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L338"
+      "source_location": "L26"
     },
     {
       "id": "app_services_atlas_get_mongo_collection",
@@ -675,6 +760,17 @@
       "source_location": "L69"
     },
     {
+      "id": "app_services_embedding_rank_by_similarity",
+      "label": "rank_by_similarity()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "rank_by_similarity()",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L23"
+    },
+    {
       "id": "tests_test_suite_test_atlas_store_and_search_with_injected_collection",
       "label": "test_atlas_store_and_search_with_injected_collection()",
       "_callable": true,
@@ -683,7 +779,7 @@
       "file_type": "code",
       "norm_label": "test_atlas_store_and_search_with_injected_collection()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L109"
+      "source_location": "L112"
     },
     {
       "id": "tests_test_suite_test_atlas_store_and_search_with_injected_collection_aggregate",
@@ -694,7 +790,7 @@
       "file_type": "code",
       "norm_label": "aggregate()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L116"
+      "source_location": "L119"
     },
     {
       "id": "tests_test_suite_test_atlas_store_and_search_with_injected_collection_insert_one",
@@ -705,29 +801,29 @@
       "file_type": "code",
       "norm_label": "insert_one()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L113"
+      "source_location": "L116"
     },
     {
-      "id": "app_services_atlas_reset_memory_store",
-      "label": "reset_memory_store()",
+      "id": "tests_test_suite_test_rank_orders_most_similar_first",
+      "label": "test_rank_orders_most_similar_first()",
       "_callable": true,
       "_origin": "ast",
-      "community": 7,
+      "community": 5,
       "file_type": "code",
-      "norm_label": "reset_memory_store()",
-      "source_file": "app/services/atlas.py",
-      "source_location": "L29"
-    },
-    {
-      "id": "tests_test_suite_clean_offline_environment",
-      "label": "_clean_offline_environment()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 7,
-      "file_type": "code",
-      "norm_label": "_clean_offline_environment()",
+      "norm_label": "test_rank_orders_most_similar_first()",
       "source_file": "tests/test_suite.py",
-      "source_location": "L23"
+      "source_location": "L359"
+    },
+    {
+      "id": "tests_test_suite_test_rank_returns_top_k",
+      "label": "test_rank_returns_top_k()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "test_rank_returns_top_k()",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L352"
     },
     {
       "id": "app_main",
@@ -740,54 +836,24 @@
       "source_location": "L1"
     },
     {
-      "id": "app_models_schemas",
-      "label": "schemas.py",
+      "id": "app_main_py_request",
+      "label": "Request",
       "_origin": "ast",
       "community": 0,
       "file_type": "code",
-      "norm_label": "schemas.py",
-      "source_file": "app/models/schemas.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_routers_ask",
-      "label": "ask.py",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "ask.py",
-      "source_file": "app/routers/ask.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_routers_ingest",
-      "label": "ingest.py",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "ingest.py",
-      "source_file": "app/routers/ingest.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_services_embedding",
-      "label": "embedding.py",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "embedding.py",
-      "source_file": "app/services/embedding.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "basemodel",
-      "label": "BaseModel",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "code",
-      "norm_label": "basemodel",
+      "norm_label": "request",
       "source_file": "",
       "source_location": ""
+    },
+    {
+      "id": "app_services_gemini",
+      "label": "gemini.py",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "gemini.py",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L1"
     },
     {
       "id": "get",
@@ -800,84 +866,114 @@
       "source_location": ""
     },
     {
-      "id": "app_models_schemas_rationale_1",
-      "label": "Pydantic request/response schemas (frozen/immutable DTOs).",
+      "id": "middleware",
+      "label": "middleware",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "middleware",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "response",
+      "label": "Response",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "code",
+      "norm_label": "response",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_main_rationale_28",
+      "label": "Attach X-Request-ID correlation and X-Process-Time-Ms latency headers.",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "pydantic request/response schemas (frozen/immutable dtos).",
-      "source_file": "app/models/schemas.py",
+      "norm_label": "attach x-request-id correlation and x-process-time-ms latency headers.",
+      "source_file": "app/main.py",
+      "source_location": "L28"
+    },
+    {
+      "id": "app_main_rationale_46",
+      "label": "Readiness probe reporting active Gemini and Atlas execution modes (no secrets).",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "rationale",
+      "norm_label": "readiness probe reporting active gemini and atlas execution modes (no secrets).",
+      "source_file": "app/main.py",
+      "source_location": "L46"
+    },
+    {
+      "id": "app_services_gemini_rationale_1",
+      "label": "Gemini multimodal reasoning and embedding service. Isolates the Google Gemini\u2026",
+      "_origin": "ast",
+      "community": 0,
+      "file_type": "rationale",
+      "norm_label": "gemini multimodal reasoning and embedding service. isolates the google gemini...",
+      "source_file": "app/services/gemini.py",
       "source_location": "L1"
     },
     {
-      "id": "app_models_schemas_rationale_18",
-      "label": "Response returned after captioning, embedding, and storing a visual asset.",
+      "id": "app_services_gemini_rationale_117",
+      "label": "Embed text into a float vector of length `dim`.",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "response returned after captioning, embedding, and storing a visual asset.",
-      "source_file": "app/models/schemas.py",
-      "source_location": "L18"
+      "norm_label": "embed text into a float vector of length `dim`.",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L117"
     },
     {
-      "id": "app_models_schemas_rationale_27",
-      "label": "Multimodal question request grounded against retrieved Atlas context.",
+      "id": "app_services_gemini_rationale_148",
+      "label": "Generate a grounded answer from retrieved context and optional visual input.",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "multimodal question request grounded against retrieved atlas context.",
-      "source_file": "app/models/schemas.py",
-      "source_location": "L27"
+      "norm_label": "generate a grounded answer from retrieved context and optional visual input.",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L148"
     },
     {
-      "id": "app_models_schemas_rationale_37",
-      "label": "Grounded answer with source document references.",
+      "id": "app_services_gemini_rationale_24",
+      "label": "Neutralize boundary-escape tags in untrusted OCR/caption text (pure helper).",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "grounded answer with source document references.",
-      "source_file": "app/models/schemas.py",
-      "source_location": "L37"
+      "norm_label": "neutralize boundary-escape tags in untrusted ocr/caption text (pure helper).",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L24"
     },
     {
-      "id": "app_models_schemas_rationale_8",
-      "label": "JSON payload alternative for ingesting a base64-encoded document.",
+      "id": "app_services_gemini_rationale_57",
+      "label": "Return a live API key if configured, or None when running in offline/mock mode.",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "json payload alternative for ingesting a base64-encoded document.",
-      "source_file": "app/models/schemas.py",
-      "source_location": "L8"
+      "norm_label": "return a live api key if configured, or none when running in offline/mock mode.",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L57"
     },
     {
-      "id": "app_routers_ask_rationale_1",
-      "label": "Question-answering router: retrieves vector context and invokes Gemini.",
+      "id": "app_services_gemini_rationale_67",
+      "label": "Build a deterministic unit-normalized feature-hashed vector for offline mode.",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "question-answering router: retrieves vector context and invokes gemini.",
-      "source_file": "app/routers/ask.py",
-      "source_location": "L1"
+      "norm_label": "build a deterministic unit-normalized feature-hashed vector for offline mode.",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L67"
     },
     {
-      "id": "app_routers_ingest_rationale_1",
-      "label": "Ingestion router: captions, embeds, and stores visual documents (including\u2026",
+      "id": "app_services_gemini_rationale_83",
+      "label": "Extract a textual caption and structured data summary from visual document\u2026",
       "_origin": "ast",
       "community": 0,
       "file_type": "rationale",
-      "norm_label": "ingestion router: captions, embeds, and stores visual documents (including...",
-      "source_file": "app/routers/ingest.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_services_embedding_rationale_1",
-      "label": "Embedding helpers. ``to_vector`` calls Gemini (needs an API key in live mode)\u2026",
-      "_origin": "ast",
-      "community": 0,
-      "file_type": "rationale",
-      "norm_label": "embedding helpers. ``to_vector`` calls gemini (needs an api key in live mode)...",
-      "source_file": "app/services/embedding.py",
-      "source_location": "L1"
+      "norm_label": "extract a textual caption and structured data summary from visual document...",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L83"
     },
     {
       "id": "unit",
@@ -890,6 +986,16 @@
       "source_location": ""
     },
     {
+      "id": "app_models_schemas_rationale_27",
+      "label": "Multimodal question request grounded against retrieved Atlas context.",
+      "_origin": "ast",
+      "community": 1,
+      "file_type": "rationale",
+      "norm_label": "multimodal question request grounded against retrieved atlas context.",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L27"
+    },
+    {
       "id": "app_services_atlas_rationale_40",
       "label": "Return a pure MongoDB aggregation pipeline using `$vectorSearch`.",
       "_origin": "ast",
@@ -898,16 +1004,6 @@
       "norm_label": "return a pure mongodb aggregation pipeline using `$vectorsearch`.",
       "source_file": "app/services/atlas.py",
       "source_location": "L40"
-    },
-    {
-      "id": "app_services_embedding_rationale_24",
-      "label": "Return the top-k candidates (each having an 'embedding') by cosine sim. Each\u2026",
-      "_origin": "ast",
-      "community": 1,
-      "file_type": "rationale",
-      "norm_label": "return the top-k candidates (each having an 'embedding') by cosine sim. each...",
-      "source_file": "app/services/embedding.py",
-      "source_location": "L24"
     },
     {
       "id": "app_routers_init",
@@ -943,170 +1039,10 @@
       "version": "0.2.0"
     },
     {
-      "id": "app_routers_ask_py_post",
-      "label": "post",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "post",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "app_routers_ingest_py_post",
-      "label": "post",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "post",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "file",
-      "label": "File",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "file",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "request",
-      "label": "Request",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "request",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "uploadfile",
-      "label": "UploadFile",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "code",
-      "norm_label": "uploadfile",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "app_routers_ask_rationale_17",
-      "label": "Answer a question grounded in retrieved Atlas context and optional image.",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "rationale",
-      "norm_label": "answer a question grounded in retrieved atlas context and optional image.",
-      "source_file": "app/routers/ask.py",
-      "source_location": "L17"
-    },
-    {
-      "id": "app_routers_ingest_rationale_22",
-      "label": "Ingest a visual document via multipart file upload or JSON `IngestRequest`.",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "rationale",
-      "norm_label": "ingest a visual document via multipart file upload or json `ingestrequest`.",
-      "source_file": "app/routers/ingest.py",
-      "source_location": "L22"
-    },
-    {
-      "id": "app_services_embedding_rationale_38",
-      "label": "Delegate to the Gemini embedding service.",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "rationale",
-      "norm_label": "delegate to the gemini embedding service.",
-      "source_file": "app/services/embedding.py",
-      "source_location": "L38"
-    },
-    {
-      "id": "app_services_gemini_rationale_23",
-      "label": "Split a visual payload into per-page byte chunks (pure helper). For PDF\u2026",
-      "_origin": "ast",
-      "community": 2,
-      "file_type": "rationale",
-      "norm_label": "split a visual payload into per-page byte chunks (pure helper). for pdf...",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L23"
-    },
-    {
-      "id": "app_services_gemini",
-      "label": "gemini.py",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "code",
-      "norm_label": "gemini.py",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_services_gemini_rationale_1",
-      "label": "Gemini multimodal reasoning and embedding service. Isolates the Google Gemini\u2026",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "gemini multimodal reasoning and embedding service. isolates the google gemini...",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "app_services_gemini_rationale_127",
-      "label": "Generate a grounded answer from retrieved context and optional visual input.",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "generate a grounded answer from retrieved context and optional visual input.",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L127"
-    },
-    {
-      "id": "app_services_gemini_rationale_50",
-      "label": "Return a live API key if configured, or None when running in offline/mock mode.",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "return a live api key if configured, or none when running in offline/mock mode.",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L50"
-    },
-    {
-      "id": "app_services_gemini_rationale_60",
-      "label": "Build a deterministic unit-normalized vector from text for offline execution.",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "build a deterministic unit-normalized vector from text for offline execution.",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L60"
-    },
-    {
-      "id": "app_services_gemini_rationale_68",
-      "label": "Extract a textual caption and structured data summary from visual document\u2026",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "extract a textual caption and structured data summary from visual document...",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L68"
-    },
-    {
-      "id": "app_services_gemini_rationale_96",
-      "label": "Embed text into a float vector of length `dim`.",
-      "_origin": "ast",
-      "community": 3,
-      "file_type": "rationale",
-      "norm_label": "embed text into a float vector of length `dim`.",
-      "source_file": "app/services/gemini.py",
-      "source_location": "L96"
-    },
-    {
       "id": "integration",
       "label": "integration",
       "_origin": "ast",
-      "community": 4,
+      "community": 2,
       "file_type": "code",
       "norm_label": "integration",
       "source_file": "",
@@ -1116,7 +1052,7 @@
       "id": "live",
       "label": "live",
       "_origin": "ast",
-      "community": 4,
+      "community": 2,
       "file_type": "code",
       "norm_label": "live",
       "source_file": "",
@@ -1126,41 +1062,241 @@
       "id": "tests_test_suite",
       "label": "test_suite.py",
       "_origin": "ast",
-      "community": 4,
+      "community": 2,
       "file_type": "code",
       "norm_label": "test_suite.py",
       "source_file": "tests/test_suite.py",
       "source_location": "L1"
     },
     {
+      "id": "tests_test_suite_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 2,
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "tests_test_suite_rationale_1",
       "label": "Test suite for the Multimodal Gemini Agent. All unit and integration tests run\u2026",
       "_origin": "ast",
-      "community": 4,
+      "community": 2,
       "file_type": "rationale",
       "norm_label": "test suite for the multimodal gemini agent. all unit and integration tests run...",
       "source_file": "tests/test_suite.py",
       "source_location": "L1"
     },
     {
-      "id": "tests_test_suite_rationale_34",
+      "id": "tests_test_suite_rationale_37",
       "label": "Build a FastAPI TestClient.",
       "_origin": "ast",
-      "community": 4,
+      "community": 2,
       "file_type": "rationale",
       "norm_label": "build a fastapi testclient.",
       "source_file": "tests/test_suite.py",
-      "source_location": "L34"
+      "source_location": "L37"
     },
     {
-      "id": "any",
+      "id": "app_routers_ask_py_post",
+      "label": "post",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "post",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_routers_ingest_py_post",
+      "label": "post",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "post",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_routers_ingest_py_request",
+      "label": "Request",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "request",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "file",
+      "label": "File",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "file",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "uploadfile",
+      "label": "UploadFile",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "code",
+      "norm_label": "uploadfile",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_routers_ask_rationale_17",
+      "label": "Answer a question grounded in retrieved Atlas context and optional image.",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "answer a question grounded in retrieved atlas context and optional image.",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L17"
+    },
+    {
+      "id": "app_routers_ingest_rationale_33",
+      "label": "Ingest a visual document via multipart file upload or JSON `IngestRequest`.",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "ingest a visual document via multipart file upload or json `ingestrequest`.",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L33"
+    },
+    {
+      "id": "app_services_embedding_rationale_38",
+      "label": "Delegate to the Gemini embedding service.",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "delegate to the gemini embedding service.",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L38"
+    },
+    {
+      "id": "app_services_gemini_rationale_30",
+      "label": "Split a visual payload into per-page byte chunks (pure helper). For PDF\u2026",
+      "_origin": "ast",
+      "community": 3,
+      "file_type": "rationale",
+      "norm_label": "split a visual payload into per-page byte chunks (pure helper). for pdf...",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "app_eval",
+      "label": "eval.py",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "eval.py",
+      "source_file": "app/eval.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_eval_py_any",
       "label": "Any",
       "_origin": "ast",
-      "community": 5,
+      "community": 4,
       "file_type": "code",
       "norm_label": "any",
       "source_file": "",
       "source_location": ""
+    },
+    {
+      "id": "app_eval_py_path",
+      "label": "Path",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "path",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "fixture",
+      "label": "fixture",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "fixture",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "fixturerequest",
+      "label": "FixtureRequest",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "fixturerequest",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "monkeypatch",
+      "label": "MonkeyPatch",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "code",
+      "norm_label": "monkeypatch",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_eval_rationale_1",
+      "label": "Deterministic evaluation & latency benchmark harness for multimodal-gemini-\u2026",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "deterministic evaluation & latency benchmark harness for multimodal-gemini-...",
+      "source_file": "app/eval.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_eval_rationale_25",
+      "label": "Immutable specification of a single multimodal ingest + ask benchmark case.",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "immutable specification of a single multimodal ingest + ask benchmark case.",
+      "source_file": "app/eval.py",
+      "source_location": "L25"
+    },
+    {
+      "id": "app_eval_rationale_73",
+      "label": "Execute the offline golden evaluation suite and return a structured scorecard.",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "execute the offline golden evaluation suite and return a structured scorecard.",
+      "source_file": "app/eval.py",
+      "source_location": "L73"
+    },
+    {
+      "id": "app_services_atlas_rationale_30",
+      "label": "Clear the offline in-memory document store (used by test fixtures).",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "clear the offline in-memory document store (used by test fixtures).",
+      "source_file": "app/services/atlas.py",
+      "source_location": "L30"
+    },
+    {
+      "id": "tests_test_suite_rationale_29",
+      "label": "Force offline deterministic mode unless running a `@pytest.mark.live` test.",
+      "_origin": "ast",
+      "community": 4,
+      "file_type": "rationale",
+      "norm_label": "force offline deterministic mode unless running a `@pytest.mark.live` test.",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L29"
     },
     {
       "id": "app_services_atlas",
@@ -1171,6 +1307,16 @@
       "norm_label": "atlas.py",
       "source_file": "app/services/atlas.py",
       "source_location": "L1"
+    },
+    {
+      "id": "app_services_atlas_py_any",
+      "label": "Any",
+      "_origin": "ast",
+      "community": 5,
+      "file_type": "code",
+      "norm_label": "any",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "app_services_atlas_rationale_1",
@@ -1213,54 +1359,134 @@
       "source_location": "L99"
     },
     {
-      "id": "fixture",
-      "label": "fixture",
+      "id": "app_services_embedding_rationale_24",
+      "label": "Return the top-k candidates (each having an 'embedding') by cosine sim. Each\u2026",
       "_origin": "ast",
-      "community": 7,
-      "file_type": "code",
-      "norm_label": "fixture",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "fixturerequest",
-      "label": "FixtureRequest",
-      "_origin": "ast",
-      "community": 7,
-      "file_type": "code",
-      "norm_label": "fixturerequest",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "monkeypatch",
-      "label": "MonkeyPatch",
-      "_origin": "ast",
-      "community": 7,
-      "file_type": "code",
-      "norm_label": "monkeypatch",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "app_services_atlas_rationale_30",
-      "label": "Clear the offline in-memory document store (used by test fixtures).",
-      "_origin": "ast",
-      "community": 7,
+      "community": 5,
       "file_type": "rationale",
-      "norm_label": "clear the offline in-memory document store (used by test fixtures).",
-      "source_file": "app/services/atlas.py",
-      "source_location": "L30"
+      "norm_label": "return the top-k candidates (each having an 'embedding') by cosine sim. each...",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L24"
     },
     {
-      "id": "tests_test_suite_rationale_26",
-      "label": "Force offline deterministic mode unless running a `@pytest.mark.live` test.",
+      "id": "app_models_schemas",
+      "label": "schemas.py",
       "_origin": "ast",
-      "community": 7,
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "schemas.py",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_routers_ask",
+      "label": "ask.py",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "ask.py",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_routers_ingest",
+      "label": "ingest.py",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "ingest.py",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_services_embedding",
+      "label": "embedding.py",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "embedding.py",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "basemodel",
+      "label": "BaseModel",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "code",
+      "norm_label": "basemodel",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "app_models_schemas_rationale_1",
+      "label": "Pydantic request/response schemas (frozen/immutable DTOs).",
+      "_origin": "ast",
+      "community": 6,
       "file_type": "rationale",
-      "norm_label": "force offline deterministic mode unless running a `@pytest.mark.live` test.",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L26"
+      "norm_label": "pydantic request/response schemas (frozen/immutable dtos).",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_models_schemas_rationale_18",
+      "label": "Response returned after captioning, embedding, and storing a visual asset.",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "response returned after captioning, embedding, and storing a visual asset.",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L18"
+    },
+    {
+      "id": "app_models_schemas_rationale_37",
+      "label": "Grounded answer with source document references.",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "grounded answer with source document references.",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L37"
+    },
+    {
+      "id": "app_models_schemas_rationale_8",
+      "label": "JSON payload alternative for ingesting a base64-encoded document.",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "json payload alternative for ingesting a base64-encoded document.",
+      "source_file": "app/models/schemas.py",
+      "source_location": "L8"
+    },
+    {
+      "id": "app_routers_ask_rationale_1",
+      "label": "Question-answering router: retrieves vector context and invokes Gemini.",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "question-answering router: retrieves vector context and invokes gemini.",
+      "source_file": "app/routers/ask.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_routers_ingest_rationale_1",
+      "label": "Ingestion router: captions, embeds, and stores visual documents (including\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "ingestion router: captions, embeds, and stores visual documents (including...",
+      "source_file": "app/routers/ingest.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_services_embedding_rationale_1",
+      "label": "Embedding helpers. ``to_vector`` calls Gemini (needs an API key in live mode)\u2026",
+      "_origin": "ast",
+      "community": 6,
+      "file_type": "rationale",
+      "norm_label": "embedding helpers. ``to_vector`` calls gemini (needs an api key in live mode)...",
+      "source_file": "app/services/embedding.py",
+      "source_location": "L1"
     },
     {
       "id": "app_init",
@@ -1283,119 +1509,187 @@
       "source_location": "L1"
     },
     {
-      "id": "github_workflows_ci_workflow",
+      "id": "rule_services",
+      "label": "Service Layer Rules (.claude/rules/services.md)",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "service layer rules (.claude/rules/services.md)",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/services.md"
+    },
+    {
+      "id": "security_policy",
+      "label": "SECURITY.md Threat Model",
+      "community": 0,
+      "file_type": "document",
+      "norm_label": "security.md threat model",
+      "source_file": "SECURITY.md"
+    },
+    {
+      "id": "ci_workflow",
       "label": "GitHub Actions CI Workflow",
       "community": 12,
       "file_type": "document",
       "norm_label": "github actions ci workflow",
-      "source_file": ".github/workflows/ci.yml"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.github/workflows/ci.yml"
     },
     {
       "id": "planning_architecture",
       "label": "PLANNING.md Architecture Reference",
-      "community": 2,
+      "community": 3,
       "file_type": "document",
       "norm_label": "planning.md architecture reference",
-      "source_file": "PLANNING.md"
-    },
-    {
-      "id": "readme_overview",
-      "label": "README.md Project Overview",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "readme.md project overview",
-      "source_file": "README.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/PLANNING.md"
     },
     {
       "id": "rule_routers",
       "label": "Router Layer Rules (.claude/rules/routers.md)",
-      "community": 2,
+      "community": 3,
       "file_type": "document",
       "norm_label": "router layer rules (.claude/rules/routers.md)",
-      "source_file": ".claude/rules/routers.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/routers.md"
     },
     {
       "id": "task_backlog",
       "label": "TASK.md Completed Milestones",
-      "community": 2,
-      "file_type": "document",
-      "norm_label": "task.md completed milestones",
-      "source_file": "TASK.md"
-    },
-    {
-      "id": "rule_services",
-      "label": "Service Layer Rules (.claude/rules/services.md)",
       "community": 3,
       "file_type": "document",
-      "norm_label": "service layer rules (.claude/rules/services.md)",
-      "source_file": ".claude/rules/services.md"
+      "norm_label": "task.md completed milestones",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/TASK.md"
+    },
+    {
+      "id": "data_eval_report_json",
+      "label": "Evaluation Scorecard (data/eval_report.json)",
+      "community": 4,
+      "file_type": "document",
+      "norm_label": "evaluation scorecard (data/eval_report.json)",
+      "source_file": "data/eval_report.json"
     },
     {
       "id": "agents_architecture",
       "label": "AGENTS.md Portable Instructions",
-      "community": 6,
+      "community": 7,
       "file_type": "document",
       "norm_label": "agents.md portable instructions",
-      "source_file": "AGENTS.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md"
     },
     {
       "id": "claude_instructions",
       "label": "CLAUDE.md Repo Instructions",
-      "community": 6,
+      "community": 7,
       "file_type": "document",
       "norm_label": "claude.md repo instructions",
-      "source_file": "CLAUDE.md"
-    },
-    {
-      "id": "claude_skills_add_multimodal_endpoint_skill_add_endpoint",
-      "label": "Skill: add-multimodal-endpoint",
-      "community": 6,
-      "file_type": "document",
-      "norm_label": "skill: add-multimodal-endpoint",
-      "source_file": ".claude/skills/add-multimodal-endpoint/SKILL.md"
-    },
-    {
-      "id": "claude_skills_atlas_vector_index_skill_atlas_index",
-      "label": "Skill: atlas-vector-index",
-      "community": 6,
-      "file_type": "document",
-      "norm_label": "skill: atlas-vector-index",
-      "source_file": ".claude/skills/atlas-vector-index/SKILL.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CLAUDE.md"
     },
     {
       "id": "contributing_guide",
       "label": "CONTRIBUTING.md Guide",
-      "community": 6,
+      "community": 7,
       "file_type": "document",
       "norm_label": "contributing.md guide",
-      "source_file": "CONTRIBUTING.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CONTRIBUTING.md"
     },
     {
       "id": "gemini_customizations",
       "label": "GEMINI.md Antigravity Config",
-      "community": 6,
+      "community": 7,
       "file_type": "document",
       "norm_label": "gemini.md antigravity config",
-      "source_file": "GEMINI.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/GEMINI.md"
     },
     {
       "id": "rule_models_tests",
       "label": "Models & Tests Rules (.claude/rules/models-and-tests.md)",
-      "community": 6,
+      "community": 7,
       "file_type": "document",
       "norm_label": "models & tests rules (.claude/rules/models-and-tests.md)",
-      "source_file": ".claude/rules/models-and-tests.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/models-and-tests.md"
     },
     {
-      "id": "data_sample_chart_svg",
+      "id": "skill_add_endpoint",
+      "label": "Skill: add-multimodal-endpoint",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "skill: add-multimodal-endpoint",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/add-multimodal-endpoint/SKILL.md"
+    },
+    {
+      "id": "skill_atlas_index",
+      "label": "Skill: atlas-vector-index",
+      "community": 7,
+      "file_type": "document",
+      "norm_label": "skill: atlas-vector-index",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/atlas-vector-index/SKILL.md"
+    },
+    {
+      "id": "sample_chart_svg",
       "label": "Sample Quarterly Revenue Chart (SVG)",
-      "community": 6,
+      "community": 7,
       "file_type": "image",
       "norm_label": "sample quarterly revenue chart (svg)",
-      "source_file": "data/sample_chart.svg"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/data/sample_chart.svg"
     }
   ],
   "links": [
+    {
+      "source": "app_eval_main",
+      "target": "app_eval_run_evaluation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/eval.py",
+      "source_location": "L153",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_run_evaluation",
+      "target": "app_eval_py_path",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/eval.py",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_run_evaluation",
+      "target": "app_services_atlas_reset_memory_store",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/eval.py",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_readyz",
+      "target": "app_services_gemini_get_live_api_key",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/main.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_readyz",
+      "target": "app_services_atlas_get_mongo_collection",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/main.py",
+      "source_location": "L48",
+      "weight": 1.0
+    },
     {
       "source": "app_routers_ask_ask",
       "target": "app_services_embedding_to_vector",
@@ -1453,7 +1747,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L53",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -1465,7 +1759,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L57",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -1477,7 +1771,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L58",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -1489,7 +1783,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L59",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -1501,7 +1795,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L72",
+      "source_location": "L95",
       "weight": 1.0
     },
     {
@@ -1578,6 +1872,18 @@
     },
     {
       "source": "app_services_gemini_answer",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L149",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_answer",
       "target": "app_services_gemini_get_live_api_key",
       "relation": "calls",
       "_origin": "ast",
@@ -1585,7 +1891,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/services/gemini.py",
-      "source_location": "L132",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_caption_image",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "app/services/gemini.py",
+      "source_location": "L113",
       "weight": 1.0
     },
     {
@@ -1597,7 +1915,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/services/gemini.py",
-      "source_location": "L72",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -1609,7 +1927,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/services/gemini.py",
-      "source_location": "L101",
+      "source_location": "L122",
       "weight": 1.0
     },
     {
@@ -1621,7 +1939,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "app/services/gemini.py",
-      "source_location": "L103",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -1633,7 +1951,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L30",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -1645,7 +1963,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L231",
+      "source_location": "L281",
       "weight": 1.0
     },
     {
@@ -1657,7 +1975,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L196",
+      "source_location": "L237",
       "weight": 1.0
     },
     {
@@ -1669,7 +1987,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L190",
+      "source_location": "L231",
       "weight": 1.0
     },
     {
@@ -1681,7 +1999,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L182",
+      "source_location": "L223",
       "weight": 1.0
     },
     {
@@ -1693,7 +2011,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L121",
+      "source_location": "L124",
       "weight": 1.0
     },
     {
@@ -1705,7 +2023,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L123",
+      "source_location": "L126",
       "weight": 1.0
     },
     {
@@ -1717,7 +2035,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L217",
+      "source_location": "L267",
       "weight": 1.0
     },
     {
@@ -1729,7 +2047,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L282",
+      "source_location": "L332",
       "weight": 1.0
     },
     {
@@ -1741,7 +2059,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L298",
+      "source_location": "L348",
       "weight": 1.0
     },
     {
@@ -1753,7 +2071,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L287",
+      "source_location": "L337",
       "weight": 1.0
     },
     {
@@ -1765,7 +2083,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L292",
+      "source_location": "L342",
       "weight": 1.0
     },
     {
@@ -1777,7 +2095,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L223",
+      "source_location": "L273",
       "weight": 1.0
     },
     {
@@ -1789,7 +2107,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L318",
+      "source_location": "L368",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_evaluation_harness_scorecard",
+      "target": "app_eval_run_evaluation",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L389",
       "weight": 1.0
     },
     {
@@ -1801,7 +2131,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L240",
+      "source_location": "L290",
       "weight": 1.0
     },
     {
@@ -1813,7 +2143,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L242",
+      "source_location": "L292",
       "weight": 1.0
     },
     {
@@ -1825,7 +2155,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L244",
+      "source_location": "L294",
       "weight": 1.0
     },
     {
@@ -1837,7 +2167,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L130",
+      "source_location": "L133",
       "weight": 1.0
     },
     {
@@ -1849,7 +2179,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L135",
+      "source_location": "L141",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload",
+      "target": "tests_test_suite_client",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L200",
       "weight": 1.0
     },
     {
@@ -1861,7 +2203,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L157",
+      "source_location": "L173",
       "weight": 1.0
     },
     {
@@ -1873,7 +2215,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L175",
+      "source_location": "L191",
       "weight": 1.0
     },
     {
@@ -1885,7 +2227,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L141",
+      "source_location": "L157",
       "weight": 1.0
     },
     {
@@ -1897,7 +2239,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L347",
+      "source_location": "L407",
       "weight": 1.0
     },
     {
@@ -1909,7 +2251,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L80",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -1921,7 +2263,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L86",
+      "source_location": "L89",
       "weight": 1.0
     },
     {
@@ -1933,7 +2275,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L92",
+      "source_location": "L95",
       "weight": 1.0
     },
     {
@@ -1945,7 +2287,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L104",
+      "source_location": "L107",
       "weight": 1.0
     },
     {
@@ -1957,7 +2299,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L98",
+      "source_location": "L101",
       "weight": 1.0
     },
     {
@@ -1969,7 +2311,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L311",
+      "source_location": "L361",
       "weight": 1.0
     },
     {
@@ -1981,7 +2323,31 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L304",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_readyz_reports_modes",
+      "target": "tests_test_suite_client",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_sanitize_untrusted_text_strips_injection_boundaries",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L252",
       "weight": 1.0
     },
     {
@@ -1993,7 +2359,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "tests/test_suite.py",
-      "source_location": "L211",
+      "source_location": "L261",
       "weight": 1.0
     },
     {
@@ -2005,7 +2371,31 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "app/main.py",
-      "source_location": "L10",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_readyz",
+      "target": "get",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "app/main.py",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_telemetry_and_correlation_middleware",
+      "target": "middleware",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "app/main.py",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -2029,7 +2419,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L17",
+      "source_location": "L28",
       "weight": 1.0
     },
     {
@@ -2041,7 +2431,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L22",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -2053,7 +2443,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L229",
+      "source_location": "L279",
       "weight": 1.0
     },
     {
@@ -2065,7 +2455,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L194",
+      "source_location": "L235",
       "weight": 1.0
     },
     {
@@ -2077,7 +2467,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L188",
+      "source_location": "L229",
       "weight": 1.0
     },
     {
@@ -2089,7 +2479,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L48",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -2101,7 +2491,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L43",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -2113,7 +2503,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L64",
+      "source_location": "L67",
       "weight": 1.0
     },
     {
@@ -2125,7 +2515,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L53",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -2137,7 +2527,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L180",
+      "source_location": "L221",
       "weight": 1.0
     },
     {
@@ -2149,7 +2539,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L108",
+      "source_location": "L111",
       "weight": 1.0
     },
     {
@@ -2161,7 +2551,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L215",
+      "source_location": "L265",
       "weight": 1.0
     },
     {
@@ -2173,7 +2563,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L280",
+      "source_location": "L330",
       "weight": 1.0
     },
     {
@@ -2185,7 +2575,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L295",
+      "source_location": "L345",
       "weight": 1.0
     },
     {
@@ -2197,7 +2587,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L285",
+      "source_location": "L335",
       "weight": 1.0
     },
     {
@@ -2209,7 +2599,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L290",
+      "source_location": "L340",
       "weight": 1.0
     },
     {
@@ -2221,7 +2611,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L221",
+      "source_location": "L271",
       "weight": 1.0
     },
     {
@@ -2233,7 +2623,19 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L316",
+      "source_location": "L366",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_evaluation_harness_scorecard",
+      "target": "integration",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L386",
       "weight": 1.0
     },
     {
@@ -2245,7 +2647,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L237",
+      "source_location": "L287",
       "weight": 1.0
     },
     {
@@ -2257,7 +2659,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L128",
+      "source_location": "L131",
       "weight": 1.0
     },
     {
@@ -2269,7 +2671,19 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L133",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload",
+      "target": "integration",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L196",
       "weight": 1.0
     },
     {
@@ -2281,7 +2695,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L148",
+      "source_location": "L164",
       "weight": 1.0
     },
     {
@@ -2293,7 +2707,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L173",
+      "source_location": "L189",
       "weight": 1.0
     },
     {
@@ -2305,7 +2719,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L58",
+      "source_location": "L61",
       "weight": 1.0
     },
     {
@@ -2317,7 +2731,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L138",
+      "source_location": "L154",
       "weight": 1.0
     },
     {
@@ -2329,7 +2743,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L337",
+      "source_location": "L397",
       "weight": 1.0
     },
     {
@@ -2341,7 +2755,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L78",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -2353,7 +2767,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L84",
+      "source_location": "L87",
       "weight": 1.0
     },
     {
@@ -2365,7 +2779,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L90",
+      "source_location": "L93",
       "weight": 1.0
     },
     {
@@ -2377,7 +2791,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L102",
+      "source_location": "L105",
       "weight": 1.0
     },
     {
@@ -2389,7 +2803,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L96",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -2401,7 +2815,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L308",
+      "source_location": "L358",
       "weight": 1.0
     },
     {
@@ -2413,7 +2827,31 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L301",
+      "source_location": "L351",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_readyz_reports_modes",
+      "target": "integration",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_sanitize_untrusted_text_strips_injection_boundaries",
+      "target": "unit",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "decorator",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L249",
       "weight": 1.0
     },
     {
@@ -2425,7 +2863,7 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L70",
+      "source_location": "L73",
       "weight": 1.0
     },
     {
@@ -2437,7 +2875,31 @@
       "confidence_score": 1.0,
       "context": "decorator",
       "source_file": "tests/test_suite.py",
-      "source_location": "L208",
+      "source_location": "L258",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_run_evaluation",
+      "target": "app_eval_py_any",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "app/eval.py",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_telemetry_and_correlation_middleware",
+      "target": "app_main_py_request",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "generic_arg",
+      "source_file": "app/main.py",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -2449,7 +2911,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L18",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -2461,12 +2923,12 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L18",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
       "source": "app_services_atlas_search_similar",
-      "target": "any",
+      "target": "app_services_atlas_py_any",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2478,7 +2940,7 @@
     },
     {
       "source": "app_services_atlas_vector_search_pipeline",
-      "target": "any",
+      "target": "app_services_atlas_py_any",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2562,43 +3024,19 @@
     },
     {
       "source": "tests_test_suite",
+      "target": "app_eval_run_evaluation",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
       "target": "app_models_schemas_askrequest",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L16",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "app_models_schemas_askresponse",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L16",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "app_models_schemas_ingestresponse",
-      "relation": "imports",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "import",
-      "source_file": "tests/test_suite.py",
-      "source_location": "L16",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "app_services_atlas_vector_search_pipeline",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2610,6 +3048,42 @@
     },
     {
       "source": "tests_test_suite",
+      "target": "app_models_schemas_askresponse",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "app_models_schemas_ingestresponse",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "app_services_atlas_vector_search_pipeline",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
       "target": "app_services_embedding_cosine_similarity",
       "relation": "imports",
       "_origin": "ast",
@@ -2617,7 +3091,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -2629,7 +3103,7 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
@@ -2641,6 +3115,18 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/test_suite.py",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval",
+      "target": "app_main",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "app/eval.py",
       "source_location": "L19",
       "weight": 1.0
     },
@@ -2682,6 +3168,18 @@
     },
     {
       "source": "tests_test_suite",
+      "target": "app_eval",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
       "target": "app_models_schemas",
       "relation": "imports_from",
       "_origin": "ast",
@@ -2689,7 +3187,19 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L16",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "app_routers_ingest",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -2701,24 +3211,24 @@
       "confidence_score": 1.0,
       "context": "import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0
     },
     {
       "source": "app_routers_ingest_ingest",
-      "target": "request",
+      "target": "app_routers_ingest_py_request",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "app/routers/ingest.py",
-      "source_location": "L18",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
       "source": "app_services_atlas_store_document",
-      "target": "any",
+      "target": "app_services_atlas_py_any",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2737,7 +3247,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tests/test_suite.py",
-      "source_location": "L23",
+      "source_location": "L26",
       "weight": 1.0
     },
     {
@@ -2749,7 +3259,19 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tests/test_suite.py",
-      "source_location": "L23",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_evaluation_harness_scorecard",
+      "target": "tests_test_suite_py_path",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L387",
       "weight": 1.0
     },
     {
@@ -2761,12 +3283,36 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "tests/test_suite.py",
-      "source_location": "L238",
+      "source_location": "L288",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite_test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload",
+      "target": "monkeypatch",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "parameter_type",
+      "source_file": "tests/test_suite.py",
+      "source_location": "L197",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_telemetry_and_correlation_middleware",
+      "target": "response",
+      "relation": "references",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "return_type",
+      "source_file": "app/main.py",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
       "source": "app_services_atlas_get_mongo_collection",
-      "target": "any",
+      "target": "app_services_atlas_py_any",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -2774,6 +3320,42 @@
       "context": "return_type",
       "source_file": "app/services/atlas.py",
       "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval",
+      "target": "app_services_atlas",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "submodule_import",
+      "source_file": "app/eval.py",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main",
+      "target": "app_services_atlas",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "submodule_import",
+      "source_file": "app/main.py",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main",
+      "target": "app_services_gemini",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "submodule_import",
+      "source_file": "app/main.py",
+      "source_location": "L10",
       "weight": 1.0
     },
     {
@@ -2785,7 +3367,7 @@
       "confidence_score": 1.0,
       "context": "submodule_import",
       "source_file": "app/main.py",
-      "source_location": "L3",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -2797,7 +3379,7 @@
       "confidence_score": 1.0,
       "context": "submodule_import",
       "source_file": "app/main.py",
-      "source_location": "L3",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -2881,7 +3463,7 @@
       "confidence_score": 1.0,
       "context": "submodule_import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0
     },
     {
@@ -2893,7 +3475,51 @@
       "confidence_score": 1.0,
       "context": "submodule_import",
       "source_file": "tests/test_suite.py",
-      "source_location": "L17",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval",
+      "target": "app_eval_main",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval",
+      "target": "app_eval_evalcase",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval",
+      "target": "app_eval_run_evaluation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main",
+      "target": "app_main_telemetry_and_correlation_middleware",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L24",
       "weight": 1.0
     },
     {
@@ -2904,7 +3530,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/main.py",
-      "source_location": "L11",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main",
+      "target": "app_main_readyz",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -2970,7 +3607,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/routers/ingest.py",
-      "source_location": "L18",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -3063,13 +3700,35 @@
     },
     {
       "source": "app_services_gemini",
+      "target": "app_services_gemini_embed_text",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini",
       "target": "app_services_gemini_answer",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L121",
+      "source_location": "L142",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L23",
       "weight": 1.0
     },
     {
@@ -3080,7 +3739,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -3091,7 +3750,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L49",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -3102,7 +3761,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L59",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -3113,392 +3772,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L67",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini",
-      "target": "app_services_gemini_embed_text",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L95",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_pipeline_path_is_embedding",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L103",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_atlas_store_and_search_with_injected_collection",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L109",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_health_ok",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L129",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_health_status_code",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L134",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ingest_returns_doc_id",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L139",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ingest_multipage_pdf_splits_into_page_chunks",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L149",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ingest_rejects_empty_or_invalid_payload",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L174",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_returns_answer_field",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L181",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_rejects_invalid_base64",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L189",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_includes_sources_when_retrieved",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L195",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_split_visual_chunks_validation",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L209",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_caption_image_returns_text",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L216",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_embed_text_returns_vector_of_expected_dim",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L222",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_clean_offline_environment",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L23",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_answer_uses_image_when_provided",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L230",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_gemini_validation_and_live_sdk_branch",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L238",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_cosine_identical_vectors_is_one",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L281",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_cosine_orthogonal_is_zero",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L286",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_cosine_zero_vector_returns_zero",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L291",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_cosine_length_mismatch_raises",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L296",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_rank_returns_top_k",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L302",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_rank_orders_most_similar_first",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L309",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_end_to_end_ingest_then_ask",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L317",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_client",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L33",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_live_gemini_and_atlas_roundtrip",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L338",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_request_defaults_top_k",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L44",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_request_accepts_image",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L49",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_response_sources_default_empty",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L54",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ingest_response_fields",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L59",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_ask_request_rejects_missing_question",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L65",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_schemas_are_immutable",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L71",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_pipeline_has_vector_search_stage",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L79",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_pipeline_limit_matches_k",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L85",
-      "weight": 1.0
-    },
-    {
-      "source": "tests_test_suite",
-      "target": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "tests/test_suite.py",
-      "source_location": "L91",
+      "source_location": "L82",
       "weight": 1.0
     },
     {
@@ -3509,7 +3783,425 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L97",
+      "source_location": "L100",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_path_is_embedding",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L106",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_atlas_store_and_search_with_injected_collection",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_health_ok",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_health_status_code",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L140",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_readyz_reports_modes",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_returns_doc_id",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_multipage_pdf_splits_into_page_chunks",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L165",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_rejects_empty_or_invalid_payload",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L190",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_guardrails_reject_unsupported_mime_and_oversized_payload",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L197",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_returns_answer_field",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L222",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_rejects_invalid_base64",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_includes_sources_when_retrieved",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L236",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_sanitize_untrusted_text_strips_injection_boundaries",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L250",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_split_visual_chunks_validation",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L259",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_clean_offline_environment",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_caption_image_returns_text",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L266",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_embed_text_returns_vector_of_expected_dim",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L272",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_answer_uses_image_when_provided",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L280",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_gemini_validation_and_live_sdk_branch",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L288",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_identical_vectors_is_one",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L331",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_orthogonal_is_zero",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L336",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_zero_vector_returns_zero",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L341",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_cosine_length_mismatch_raises",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L346",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_rank_returns_top_k",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L352",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_rank_orders_most_similar_first",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L359",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_client",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_end_to_end_ingest_then_ask",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L367",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_evaluation_harness_scorecard",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L387",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_live_gemini_and_atlas_roundtrip",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L398",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_defaults_top_k",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_accepts_image",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L52",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_response_sources_default_empty",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ingest_response_fields",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_ask_request_rejects_missing_question",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_schemas_are_immutable",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_has_vector_search_stage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_limit_matches_k",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "tests_test_suite",
+      "target": "tests_test_suite_test_pipeline_num_candidates_scales_with_k",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "tests/test_suite.py",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -3520,7 +4212,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L113",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -3531,7 +4223,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -3542,7 +4234,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L259",
+      "source_location": "L309",
       "weight": 1.0
     },
     {
@@ -3553,7 +4245,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L262",
+      "source_location": "L312",
       "weight": 1.0
     },
     {
@@ -3564,7 +4256,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L266",
+      "source_location": "L316",
       "weight": 1.0
     },
     {
@@ -3609,6 +4301,61 @@
       "confidence_score": 1.0,
       "source_file": "app/models/schemas.py",
       "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_rationale_1",
+      "target": "app_eval",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_rationale_25",
+      "target": "app_eval_evalcase",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_rationale_73",
+      "target": "app_eval_run_evaluation",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_rationale_28",
+      "target": "app_main_telemetry_and_correlation_middleware",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "app_main_rationale_46",
+      "target": "app_main_readyz",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/main.py",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -3700,14 +4447,14 @@
       "weight": 1.0
     },
     {
-      "source": "app_routers_ingest_rationale_22",
+      "source": "app_routers_ingest_rationale_33",
       "target": "app_routers_ingest_ingest",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/routers/ingest.py",
-      "source_location": "L22",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -3821,69 +4568,80 @@
       "weight": 1.0
     },
     {
-      "source": "app_services_gemini_rationale_127",
-      "target": "app_services_gemini_answer",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L127",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini_rationale_23",
-      "target": "app_services_gemini_split_visual_chunks",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L23",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini_rationale_50",
-      "target": "app_services_gemini_get_live_api_key",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L50",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini_rationale_60",
-      "target": "app_services_gemini_deterministic_vector",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L60",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini_rationale_68",
-      "target": "app_services_gemini_caption_image",
-      "relation": "rationale_for",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/services/gemini.py",
-      "source_location": "L68",
-      "weight": 1.0
-    },
-    {
-      "source": "app_services_gemini_rationale_96",
+      "source": "app_services_gemini_rationale_117",
       "target": "app_services_gemini_embed_text",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "app/services/gemini.py",
-      "source_location": "L96",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_148",
+      "target": "app_services_gemini_answer",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_24",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_30",
+      "target": "app_services_gemini_split_visual_chunks",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_57",
+      "target": "app_services_gemini_get_live_api_key",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_67",
+      "target": "app_services_gemini_deterministic_vector",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L67",
+      "weight": 1.0
+    },
+    {
+      "source": "app_services_gemini_rationale_83",
+      "target": "app_services_gemini_caption_image",
+      "relation": "rationale_for",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/services/gemini.py",
+      "source_location": "L83",
       "weight": 1.0
     },
     {
@@ -3898,25 +4656,25 @@
       "weight": 1.0
     },
     {
-      "source": "tests_test_suite_rationale_26",
+      "source": "tests_test_suite_rationale_29",
       "target": "tests_test_suite_clean_offline_environment",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L26",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
-      "source": "tests_test_suite_rationale_34",
+      "source": "tests_test_suite_rationale_37",
       "target": "tests_test_suite_client",
       "relation": "rationale_for",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "tests/test_suite.py",
-      "source_location": "L34",
+      "source_location": "L37",
       "weight": 1.0
     },
     {
@@ -3939,7 +4697,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "app/routers/ingest.py",
-      "source_location": "L35",
+      "source_location": "L46",
       "weight": 0.8
     },
     {
@@ -3950,7 +4708,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L50",
+      "source_location": "L53",
       "weight": 0.8
     },
     {
@@ -3961,7 +4719,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L45",
+      "source_location": "L48",
       "weight": 0.8
     },
     {
@@ -3972,7 +4730,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L67",
+      "source_location": "L70",
       "weight": 0.8
     },
     {
@@ -3983,7 +4741,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L55",
+      "source_location": "L58",
       "weight": 0.8
     },
     {
@@ -3994,7 +4752,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L60",
+      "source_location": "L63",
       "weight": 0.8
     },
     {
@@ -4005,7 +4763,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.95,
       "source_file": "tests/test_suite.py",
-      "source_location": "L72",
+      "source_location": "L75",
       "weight": 0.8
     },
     {
@@ -4014,7 +4772,7 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": ".claude/rules/models-and-tests.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/models-and-tests.md",
       "weight": 1.0
     },
     {
@@ -4023,7 +4781,7 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": ".claude/rules/routers.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/routers.md",
       "weight": 1.0
     },
     {
@@ -4032,7 +4790,7 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": ".claude/rules/routers.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/routers.md",
       "weight": 1.0
     },
     {
@@ -4041,7 +4799,7 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": ".claude/rules/services.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/services.md",
       "weight": 1.0
     },
     {
@@ -4050,25 +4808,25 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": ".claude/rules/services.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/rules/services.md",
       "weight": 1.0
     },
     {
-      "source": "agents_architecture",
-      "target": "claude_skills_add_multimodal_endpoint_skill_add_endpoint",
-      "relation": "references",
+      "source": "security_policy",
+      "target": "app_routers_ingest_ingest",
+      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
+      "source_file": "SECURITY.md",
       "weight": 1.0
     },
     {
-      "source": "agents_architecture",
-      "target": "claude_skills_atlas_vector_index_skill_atlas_index",
-      "relation": "references",
+      "source": "security_policy",
+      "target": "app_services_gemini_sanitize_untrusted_text",
+      "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
+      "source_file": "SECURITY.md",
       "weight": 1.0
     },
     {
@@ -4077,7 +4835,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md",
       "weight": 1.0
     },
     {
@@ -4086,7 +4844,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md",
       "weight": 1.0
     },
     {
@@ -4095,7 +4853,34 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_architecture",
+      "target": "skill_add_endpoint",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md",
+      "weight": 1.0
+    },
+    {
+      "source": "agents_architecture",
+      "target": "skill_atlas_index",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md",
+      "weight": 1.0
+    },
+    {
+      "source": "app_eval_run_evaluation",
+      "target": "data_eval_report_json",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "app/eval.py",
       "weight": 1.0
     },
     {
@@ -4104,25 +4889,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "weight": 1.0
-    },
-    {
-      "source": "claude_skills_atlas_vector_index_skill_atlas_index",
-      "target": "app_services_atlas_vector_search_pipeline",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".claude/skills/atlas-vector-index/SKILL.md",
-      "weight": 1.0
-    },
-    {
-      "source": "claude_skills_atlas_vector_index_skill_atlas_index",
-      "target": "data_sample_chart_svg",
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".claude/skills/atlas-vector-index/SKILL.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CLAUDE.md",
       "weight": 1.0
     },
     {
@@ -4131,7 +4898,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "CONTRIBUTING.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/CONTRIBUTING.md",
       "weight": 1.0
     },
     {
@@ -4140,7 +4907,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "GEMINI.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/GEMINI.md",
       "weight": 1.0
     },
     {
@@ -4149,7 +4916,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "PLANNING.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/PLANNING.md",
       "weight": 1.0
     },
     {
@@ -4158,16 +4925,25 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "PLANNING.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/PLANNING.md",
       "weight": 1.0
     },
     {
-      "source": "readme_overview",
-      "target": "planning_architecture",
+      "source": "skill_atlas_index",
+      "target": "app_services_atlas_vector_search_pipeline",
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "README.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/atlas-vector-index/SKILL.md",
+      "weight": 1.0
+    },
+    {
+      "source": "skill_atlas_index",
+      "target": "sample_chart_svg",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/.claude/skills/atlas-vector-index/SKILL.md",
       "weight": 1.0
     },
     {
@@ -4176,7 +4952,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "TASK.md",
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/TASK.md",
       "weight": 1.0
     }
   ],
@@ -4191,13 +4967,13 @@
         "rule_routers",
         "rule_services",
         "rule_models_tests",
-        "claude_skills_add_multimodal_endpoint_skill_add_endpoint",
-        "claude_skills_atlas_vector_index_skill_atlas_index"
+        "skill_add_endpoint",
+        "skill_atlas_index"
       ],
       "relation": "form",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "AGENTS.md"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/AGENTS.md"
     },
     {
       "id": "ask_grounded_pipeline",
@@ -4212,23 +4988,8 @@
       "relation": "participate_in",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "app/routers/ask.py"
-    },
-    {
-      "id": "ingest_multimodal_pipeline",
-      "label": "Ingest Pipeline: Split -> Caption -> Embed -> Store",
-      "nodes": [
-        "app_routers_ingest_ingest",
-        "app_services_gemini_split_visual_chunks",
-        "app_services_gemini_caption_image",
-        "app_services_embedding_to_vector",
-        "app_services_atlas_store_document"
-      ],
-      "relation": "participate_in",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "app/routers/ingest.py"
+      "source_file": "/Users/ashraf-macbookair/projects/multimodal-gemini-agent/app/routers/ask.py"
     }
   ],
-  "built_at_commit": "4a04528cd2247ee9a94a25a356dde199b48ec267"
+  "built_at_commit": "3a38e96d39b837386c8b0a8fe276ac8ce5225634"
 }
