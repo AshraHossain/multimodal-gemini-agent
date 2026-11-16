@@ -10,8 +10,12 @@ class IngestRequest(BaseModel):
     model_config = ConfigDict(frozen=True)
 
     image_b64: str = Field(..., min_length=1, description="Base64-encoded image or PDF page bytes")
-    source_id: str | None = Field(default=None, description="Optional caller-supplied document ID")
-    mime_type: str = Field(default="image/png", description="MIME type of the visual asset")
+    source_id: str | None = Field(
+        default=None, max_length=128, description="Optional caller-supplied document ID"
+    )
+    mime_type: str = Field(
+        default="image/png", max_length=64, description="MIME type of the visual asset"
+    )
 
 
 class IngestResponse(BaseModel):
@@ -19,7 +23,7 @@ class IngestResponse(BaseModel):
 
     model_config = ConfigDict(frozen=True)
 
-    doc_id: str = Field(..., min_length=1)
+    doc_id: str = Field(..., min_length=1, max_length=160)
     chunks: int = Field(..., ge=1)
 
 
@@ -28,7 +32,7 @@ class AskRequest(BaseModel):
 
     model_config = ConfigDict(frozen=True)
 
-    question: str = Field(..., min_length=1)
+    question: str = Field(..., min_length=1, max_length=4000)
     image_b64: str | None = None
     top_k: int = Field(default=4, ge=1, le=50)
 

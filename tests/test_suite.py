@@ -16,8 +16,9 @@ from pydantic import ValidationError
 
 from app.eval import main as eval_main
 from app.eval import run_evaluation
+from app.main import reset_rate_limiter
 from app.models.schemas import AskRequest, AskResponse, IngestResponse
-from app.routers.ingest import MAX_UPLOAD_BYTES
+from app.routers.ingest import MAX_UPLOAD_BYTES, sanitize_doc_id
 from app.services import atlas, gemini
 from app.services.atlas import vector_search_pipeline
 from app.services.embedding import cosine_similarity, rank_by_similarity, to_vector
@@ -31,6 +32,9 @@ def _clean_offline_environment(
     if request.node.get_closest_marker("live") is None:
         monkeypatch.setenv("GEMINI_MOCK", "1")
         monkeypatch.setenv("ATLAS_MOCK", "1")
+    monkeypatch.delenv("API_AUTH_TOKEN", raising=False)
+    monkeypatch.setenv("RATE_LIMIT_PER_MINUTE", "120")
+    reset_rate_limiter()
     atlas.reset_memory_store()
 
 
@@ -263,9 +267,74 @@ def test_ask_returns_answer_field():
 
 
 @pytest.mark.integration
-def test_ask_rejects_invalid_base64():
+def test_ask_rejects_invalid_base64(monkeypatch: pytest.MonkeyPatch):
     resp = _client().post("/ask", json={"question": "Q?", "image_b64": "not_valid_base64!"})
     assert resp.status_code == 400
+
+    import app.routers.ingest as ingest_mod
+
+    monkeypatch.setattr(ingest_mod, "MAX_UPLOAD_BYTES", 8)
+    resp_413 = _client().post(
+        "/ask",
+        json={"question": "Q?", "image_b64": base64.b64encode(b"0123456789ABCDEF").decode("ascii")},
+    )
+    assert resp_413.status_code == 413
+
+
+@pytest.mark.integration
+def test_security_headers_auth_and_rate_limiting(monkeypatch: pytest.MonkeyPatch):
+    client = _client()
+    # 1. Security headers on responses
+    h_resp = client.get("/health")
+    assert h_resp.headers["X-Content-Type-Options"] == "nosniff"
+    assert h_resp.headers["X-Frame-Options"] == "DENY"
+    assert "default-src 'none'" in h_resp.headers["Content-Security-Policy"]
+
+    # 2. Path traversal sanitization on doc_id
+    assert sanitize_doc_id("../../etc/passwd") == "passwd"
+    assert sanitize_doc_id("///...///") .startswith("doc-")
+
+    # 3. API token authentication (401 without valid key, 200 with X-API-Key or Bearer)
+    monkeypatch.setenv("API_AUTH_TOKEN", "secret-enterprise-token")
+    assert client.post("/ask", json={"question": "Q?"}).status_code == 401
+    assert (
+        client.post(
+            "/ask",
+            json={"question": "Q?"},
+            headers={"X-API-Key": "wrong-token"},
+        ).status_code
+        == 401
+    )
+    assert (
+        client.post(
+            "/ask",
+            json={"question": "Q?"},
+            headers={"X-API-Key": "secret-enterprise-token"},
+        ).status_code
+        == 200
+    )
+    assert (
+        client.post(
+            "/ask",
+            json={"question": "Q?"},
+            headers={"Authorization": "Bearer secret-enterprise-token"},
+        ).status_code
+        == 200
+    )
+
+    # 4. Sliding-window rate limiting (429 Too Many Requests)
+    monkeypatch.delenv("API_AUTH_TOKEN", raising=False)
+    monkeypatch.setenv("RATE_LIMIT_PER_MINUTE", "2")
+    reset_rate_limiter()
+    # Expire old timestamp branch coverage
+    from app.main import _REQUEST_TIMESTAMPS
+
+    _REQUEST_TIMESTAMPS.append(-100.0)
+    assert client.post("/ask", json={"question": "1"}).status_code == 200
+    assert client.post("/ask", json={"question": "2"}).status_code == 200
+    r_429 = client.post("/ask", json={"question": "3"})
+    assert r_429.status_code == 429
+    assert r_429.headers["Retry-After"] == "60"
 
 
 @pytest.mark.integration

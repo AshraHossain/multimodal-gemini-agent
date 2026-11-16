@@ -7,6 +7,7 @@ import binascii
 from fastapi import APIRouter, HTTPException
 
 from app.models.schemas import AskRequest, AskResponse
+from app.routers import ingest as ingest_router
 from app.services import atlas, embedding, gemini
 
 router = APIRouter()
@@ -21,6 +22,11 @@ async def ask(req: AskRequest) -> AskResponse:
             image_bytes = base64.b64decode(req.image_b64, validate=True)
         except (binascii.Error, ValueError) as exc:
             raise HTTPException(status_code=400, detail="Invalid base64 in image_b64") from exc
+        if len(image_bytes) > ingest_router.MAX_UPLOAD_BYTES:
+            raise HTTPException(
+                status_code=413,
+                detail=f"Image size exceeds {ingest_router.MAX_UPLOAD_BYTES} byte limit",
+            )
 
     query_vector = embedding.to_vector(req.question)
     matches = atlas.search_similar(query_vector, k=req.top_k)

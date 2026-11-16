@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import base64
 import binascii
+import os
+import re
 import uuid
 from typing import Annotated
 
@@ -23,6 +25,18 @@ ALLOWED_MIME_TYPES: frozenset[str] = frozenset(
     }
 )
 MAX_UPLOAD_BYTES: int = 10 * 1024 * 1024  # 10 MB
+_SAFE_DOC_ID_RE = re.compile(r"[^A-Za-z0-9._-]+")
+
+
+def sanitize_doc_id(raw_id: str | None) -> str:
+    """Sanitize caller-supplied filenames/IDs to prevent path traversal or NoSQL key injection."""
+    if not raw_id:
+        return f"doc-{uuid.uuid4().hex[:8]}"
+    base = os.path.basename(raw_id.replace("\\", "/")).strip()
+    cleaned = _SAFE_DOC_ID_RE.sub("_", base).strip("._-")
+    if not cleaned:
+        return f"doc-{uuid.uuid4().hex[:8]}"
+    return cleaned[:128]
 
 
 @router.post("/ingest", response_model=IngestResponse)
@@ -72,7 +86,7 @@ async def ingest(
             detail=f"Payload size {len(image_bytes)} bytes exceeds {MAX_UPLOAD_BYTES} byte limit",
         )
 
-    base_doc_id = doc_id or f"doc-{uuid.uuid4().hex[:8]}"
+    base_doc_id = sanitize_doc_id(doc_id)
     page_chunks = gemini.split_visual_chunks(image_bytes, mime_type=mime_type)
 
     for idx, chunk_bytes in enumerate(page_chunks, start=1):
