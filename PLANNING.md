@@ -8,29 +8,40 @@ All routes (`/ingest`, `/ask`, `/health`, `/readyz`), the Gemini service wrapper
 
 ## Architecture
 
-```text
-POST /ingest (multipart file or JSON IngestRequest, <=10MB, allowlisted MIME)
-        │
-        ▼
-  app/routers/ingest.py
-        ├── app/services/gemini.split_visual_chunks() (multi-page PDF -> per-page chunks)
-        ├── app/services/gemini.caption_image() -> sanitize_untrusted_text()
-        ├── app/services/embedding.to_vector() -> gemini.embed_text()
-        └── app/services/atlas.store_document()
-        ▼
-     MongoDB Atlas (or in-memory fallback store in offline mode)
+```mermaid
+flowchart TB
+    subgraph HTTP["FastAPI HTTP Layer (app/main.py, app/routers/)"]
+        MW["Middleware: X-Request-ID & X-Process-Time-Ms"]
+        ING["POST /ingest (app/routers/ingest.py)\nMIME Allowlist (415) • 10MB Cap (413)"]
+        ASK["POST /ask (app/routers/ask.py)\nAskRequest Validation • Base64 Check (400)"]
+        HLTH["GET /health & GET /readyz"]
+    end
 
-POST /ask (AskRequest: question + optional image_b64 + top_k)
-        │
-        ▼
-  app/routers/ask.py
-        ├── app/services/embedding.to_vector()
-        ├── app/services/atlas.search_similar()
-        │     ├── live: atlas.vector_search_pipeline() ($vectorSearch)
-        │     └── offline: embedding.rank_by_similarity() (pure cosine)
-        └── app/services/gemini.answer() (<untrusted_context> boundary framing)
-        ▼
-     AskResponse { answer, sources } + X-Request-ID & X-Process-Time-Ms headers
+    subgraph Pure["Deterministic Core (Pure Functions)"]
+        SPL["gemini.split_visual_chunks()"]
+        SAN["gemini.sanitize_untrusted_text()"]
+        VSP["atlas.vector_search_pipeline()"]
+        RNK["embedding.cosine_similarity() & rank_by_similarity()"]
+    end
+
+    subgraph Svc["Service Isolation Layer (app/services/)"]
+        GSVC["gemini.py\ncaption_image() • embed_text() • answer()"]
+        ASVC["atlas.py\nstore_document() • search_similar()"]
+    end
+
+    subgraph Ext["Providers (Live Cloud vs. Offline Mock)"]
+        GAPI[("Google Gemini SDK\n(google-genai)")]
+        MATL[("MongoDB Atlas\n($vectorSearch)")]
+        MEM[("Offline Fallback\n(Feature-Hash + In-Memory Store)")]
+    end
+
+    MW --> ING & ASK & HLTH
+    ING --> SPL --> GSVC --> SAN
+    ING --> ASVC
+    ASK --> GSVC & ASVC
+    ASVC --> VSP & RNK
+    GSVC --> GAPI & MEM
+    ASVC --> MATL & MEM
 ```
 
 ### Module responsibilities

@@ -22,7 +22,68 @@ An enterprise-grade FastAPI service that ingests visual documents — charts, ar
 
 ---
 
-## Architecture & Request Flow
+## System Architecture & Request Flow
+
+### 1. Layered System Architecture
+
+```mermaid
+flowchart LR
+    subgraph Client["Client & CI Surface"]
+        U["REST Client / curl"]
+        EV["Evaluation Harness\n(app/eval.py)"]
+    end
+
+    subgraph Edge["FastAPI Edge & Guardrails (app/main.py)"]
+        MW["Telemetry & Correlation\n(X-Request-ID, X-Process-Time-Ms)"]
+        PR["Liveness & Readiness\n(GET /health, GET /readyz)"]
+    end
+
+    subgraph Routers["Thin HTTP Router Boundary (app/routers/)"]
+        IN["POST /ingest\n• MIME Allowlist (415)\n• 10 MB Cap (413)"]
+        ASK["POST /ask\n• Base64 Validation (400)\n• Frozen AskRequest DTO"]
+    end
+
+    subgraph Core["Deterministic Pure Core (Side-Effect Free)"]
+        SPLIT["split_visual_chunks()\n(Multi-page PDF Splitter)"]
+        SAN["sanitize_untrusted_text()\n(<untrusted_context> Framing)"]
+        PIPE["vector_search_pipeline()\n($vectorSearch Stage Builder)"]
+        MATH["cosine_similarity() &\nrank_by_similarity()"]
+    end
+
+    subgraph Services["Isolated Service Adapters (app/services/)"]
+        GEM["gemini.py\ncaption_image | embed_text | answer"]
+        ATL["atlas.py\nstore_document | search_similar"]
+    end
+
+    subgraph Backends["External Cloud / Offline Fallback"]
+        GCLOUD[("Google Gemini API\n(google-genai: 2.5-flash +\ntext-embedding-004)")]
+        MDB[("MongoDB Atlas\n(vector_index)")]
+        MOCK[("Deterministic Offline Mode\n(Feature-Hash Vectors +\nIn-Memory Cosine Store)")]
+    end
+
+    U --> MW
+    EV --> MW
+    MW --> PR
+    MW --> IN
+    MW --> ASK
+
+    IN --> SPLIT
+    SPLIT --> GEM
+    GEM --> SAN
+    IN --> ATL
+
+    ASK --> GEM
+    ASK --> ATL
+    ATL --> PIPE
+    ATL --> MATH
+
+    GEM -. "Live Mode" .-> GCLOUD
+    ATL -. "Live Mode" .-> MDB
+    GEM -. "GEMINI_MOCK=1" .-> MOCK
+    ATL -. "ATLAS_MOCK=1" .-> MOCK
+```
+
+### 2. End-to-End Request Sequence
 
 ```mermaid
 sequenceDiagram
