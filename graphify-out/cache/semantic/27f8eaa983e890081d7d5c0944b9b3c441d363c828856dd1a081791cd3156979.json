@@ -1,0 +1,1 @@
+{"nodes": [{"id": "contributing_guide", "label": "CONTRIBUTING.md Guide", "file_type": "document", "source_file": "CONTRIBUTING.md"}], "edges": [{"source": "contributing_guide", "target": "agents_architecture", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "CONTRIBUTING.md", "weight": 1.0}], "hyperedges": []}

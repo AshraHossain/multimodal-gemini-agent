@@ -1,0 +1,1 @@
+{"nodes": [{"id": "gemini_customizations", "label": "GEMINI.md Antigravity Config", "file_type": "document", "source_file": "GEMINI.md"}], "edges": [{"source": "gemini_customizations", "target": "agents_architecture", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "GEMINI.md", "weight": 1.0}], "hyperedges": []}

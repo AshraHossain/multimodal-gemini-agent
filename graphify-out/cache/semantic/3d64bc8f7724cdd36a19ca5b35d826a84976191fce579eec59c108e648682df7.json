@@ -1,0 +1,1 @@
+{"nodes": [{"id": "readme_overview", "label": "README.md Project Overview", "file_type": "document", "source_file": "README.md"}], "edges": [{"source": "readme_overview", "target": "planning_architecture", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "README.md", "weight": 1.0}], "hyperedges": []}

@@ -1,0 +1,1 @@
+{"nodes": [{"id": "claude_instructions", "label": "CLAUDE.md Repo Instructions", "file_type": "document", "source_file": "CLAUDE.md"}], "edges": [{"source": "claude_instructions", "target": "agents_architecture", "relation": "references", "confidence": "EXTRACTED", "confidence_score": 1.0, "source_file": "CLAUDE.md", "weight": 1.0}], "hyperedges": []}
