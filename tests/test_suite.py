@@ -440,7 +440,11 @@ def test_end_to_end_ingest_then_ask():
 
 
 @pytest.mark.integration
-def test_evaluation_harness_scorecard(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
+def test_evaluation_harness_scorecard(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+):
     report_file = tmp_path / "eval_report.json"
     scorecard = run_evaluation(output_path=report_file)
     assert report_file.exists()
@@ -448,6 +452,7 @@ def test_evaluation_harness_scorecard(tmp_path: Path, capsys: pytest.CaptureFixt
     assert scorecard["citation_grounding_rate"] == 1.0
     assert scorecard["guardrail_pass_rate"] == 1.0
 
+    monkeypatch.chdir(tmp_path)
     eval_main()
     captured = capsys.readouterr().out
     assert "Evaluation Scorecard" in captured
